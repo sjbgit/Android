@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.test.colortilt;
+package com.test.androidhex1;
 
 public final class R {
     public static final class attr {
