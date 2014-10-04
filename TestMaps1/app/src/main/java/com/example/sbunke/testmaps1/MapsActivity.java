@@ -1,22 +1,44 @@
 package com.example.sbunke.testmaps1;
 
+import android.location.Location;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity {
+public class MapsActivity extends FragmentActivity implements
+        GooglePlayServicesClient.ConnectionCallbacks,
+        GooglePlayServicesClient.OnConnectionFailedListener{
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    LocationClient mLocationClient;
+
+    Location mCurrentLocation;
+    LatLng mCurrentLatLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        mLocationClient = new LocationClient(this, this, this);
         setUpMapIfNeeded();
+    }
+
+    /*
+     * Called when the Activity becomes visible.
+     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Connect the client.
+        mLocationClient.connect();
     }
 
     @Override
@@ -48,6 +70,14 @@ public class MapsActivity extends FragmentActivity {
                     .getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
+                //try {
+                //    mCurrentLocation = mLocationClient.getLastLocation();
+                //}
+                //catch (Exception e) {
+                //    Exception ex = e;
+                //}
+
+
                 setUpMap();
             }
         }
@@ -61,5 +91,25 @@ public class MapsActivity extends FragmentActivity {
      */
     private void setUpMap() {
         mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+        mCurrentLocation = mLocationClient.getLastLocation();
+        mCurrentLatLng = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
+        mMap.addMarker(new MarkerOptions().position(mCurrentLatLng).title("Current"));
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mCurrentLatLng, 15));
+    }
+
+    @Override
+    public void onDisconnected() {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
     }
 }
