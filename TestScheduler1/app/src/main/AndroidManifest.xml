@@ -13,7 +13,7 @@
         android:icon="@drawable/ic_launcher"
         android:theme="@style/Theme.Sample">
 
-        <activity android:name=".MainActivity"
+        <activity android:name="com.example.sbunke.testscheduler.MainActivity"
             android:label="@string/app_name"
             android:uiOptions="splitActionBarWhenNarrow">
 
@@ -23,15 +23,15 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".SampleAlarmReceiver"></receiver>
+        <receiver android:name="com.example.sbunke.testscheduler.SampleAlarmReceiver"></receiver>
 
-        <receiver android:name=".SampleBootReceiver"
+        <receiver android:name="com.example.sbunke.testscheduler.SampleBootReceiver"
             android:enabled="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"></action>
             </intent-filter>
         </receiver>
-        <service android:name=".SampleSchedulingService" />
+        <service android:name="com.example.sbunke.testscheduler.SampleSchedulingService" />
     </application>
 
 </manifest>
