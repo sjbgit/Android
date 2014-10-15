@@ -6,12 +6,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MyActivity extends ListActivity {
+public class MyActivity extends Activity {
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -19,7 +20,9 @@ public class MyActivity extends ListActivity {
         // create an array of Strings, that will be put to our ListActivity
         ArrayAdapter<Model> adapter = new InteractiveArrayAdapter(this,
                 getModel());
-        setListAdapter(adapter);
+        //setListAdapter(adapter);
+        ListView lv = (ListView)findViewById(R.id.listview);
+        lv.setAdapter(adapter);
     }
 
     private List<Model> getModel() {
