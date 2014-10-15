@@ -2,36 +2,46 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.scheduler"
     android:versionCode="1"
-    android:versionName="1.0">
+    android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="11" android:targetSdkVersion="18" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application android:label="@string/app_name"
+    <application
         android:icon="@drawable/ic_launcher"
-        android:theme="@style/Theme.Sample">
-
-        <activity android:name="com.example.sbunke.testscheduler.MainActivity"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Sample" >
+        <activity
+            android:name="com.example.sbunke.testscheduler.MainActivity"
             android:label="@string/app_name"
-            android:uiOptions="splitActionBarWhenNarrow">
-
+            android:uiOptions="splitActionBarWhenNarrow" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <receiver android:name="com.example.sbunke.testscheduler.SampleAlarmReceiver"></receiver>
-
-        <receiver android:name="com.example.sbunke.testscheduler.SampleBootReceiver"
-            android:enabled="false">
+        <receiver android:name="com.example.sbunke.testscheduler.SampleAlarmReceiver" />
+        <receiver
+            android:name="com.example.sbunke.testscheduler.SampleBootReceiver"
+            android:enabled="false" >
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
         <service android:name="com.example.sbunke.testscheduler.SampleSchedulingService" />
+
+        <activity
+            android:name="com.example.sbunke.testscheduler.NotificationActivity"
+            android:label="@string/title_activity_notification" >
+        </activity>
     </application>
 
 </manifest>

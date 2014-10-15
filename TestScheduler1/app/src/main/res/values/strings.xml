@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   Copyright 2013 The Android Open Source Project
 
@@ -12,9 +13,9 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-  -->
-
+-->
 <resources>
+
     <string name="app_name">Scheduler</string>
     <string name="intro_message">Welcome to <b>Scheduler</b>!
         This sample demonstrates how you can schedule an alarm that causes a service to
@@ -30,4 +31,8 @@
     <string name="doodle_found">There is a Google doodle today!!</string>
     <string name="no_doodle">No Google doodle today.</string>
     <string name="connection_error">Connection error.</string>
+    <string name="title_activity_notification">NotificationActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
 </resources>
