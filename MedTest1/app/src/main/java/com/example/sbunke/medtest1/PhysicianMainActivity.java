@@ -1,6 +1,7 @@
 package com.example.sbunke.medtest1;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +13,14 @@ public class PhysicianMainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_physician_main);
+        GoToList();
+
+    }
+
+    private void GoToList() {
+        Intent launchIntent =
+                new Intent(this, PhysicianPatientListActivity.class);
+        this.startActivity(launchIntent);
     }
 
 
