@@ -1,4 +1,4 @@
-package com.example.sbunke.com.example.sbunke.dataaccess;
+package com.example.sbunke.dataaccess;
 
 import com.example.sbunke.models.Patient;
 
@@ -21,7 +21,7 @@ public class PhysicianRepository {
         patients.add(new Patient("first name6"));
         patients.add(new Patient("first name7"));
         patients.add(new Patient("first name8"));
-                     
+
         return patients;
     }
 
