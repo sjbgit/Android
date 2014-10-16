@@ -24,6 +24,10 @@
             android:name=".PhysicianMainActivity"
             android:label="PhysicianMainActivity" >
         </activity>
+        <activity
+            android:name=".PhysicianPatientListActivity"
+            android:label="@string/title_activity_physician_patient_list" >
+        </activity>
     </application>
 
 </manifest>
