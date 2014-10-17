@@ -11,6 +11,35 @@
     <TextView
         android:text="@string/patientMain"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check In"
+        android:id="@+id/patientCheckInBtn"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_marginTop="53dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignStart="@+id/btnPatientPrescriptions" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prescriptions"
+        android:id="@+id/btnPatientPrescriptions"
+        android:layout_below="@+id/patientCheckInBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Check In Alarms"
+        android:id="@+id/btnSetCheckinAlarms"
+        android:layout_below="@+id/btnPatientPrescriptions"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp" />
 
 </RelativeLayout>
