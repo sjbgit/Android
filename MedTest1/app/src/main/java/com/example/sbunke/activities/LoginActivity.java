@@ -1,6 +1,8 @@
 package com.example.sbunke.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,6 +25,36 @@ public class LoginActivity extends Activity {
 
     private void handleButtons() {
         //Button patientMain =
+
+        ((Button)findViewById(R.id.btnLogin)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+
+                builder.setMessage(R.string.login_failed_message)
+                        .setTitle(R.string.login_title);
+
+
+                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked OK button
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+
+                // Perform action on click
+                //Intent launchIntent =
+                //        new Intent(ctx, PatientMainActivity.class);
+                //PendingIntent contentIntent =
+                //        PendingIntent.getActivity(ctx, 0, launchIntent, 0);
+                //ctx.startActivity(launchIntent);
+            }
+        });
+
         ((Button)findViewById(R.id.patientLoginButton)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
