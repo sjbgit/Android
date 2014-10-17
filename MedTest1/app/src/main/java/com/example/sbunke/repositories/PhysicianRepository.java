@@ -1,4 +1,4 @@
-package com.example.sbunke.dataaccess;
+package com.example.sbunke.repositories;
 
 import com.example.sbunke.models.Patient;
 
