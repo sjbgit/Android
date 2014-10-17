@@ -5,10 +5,10 @@
     <string name="patientMain">Patient Main</string>
     <string name="physicianMain">Physician Main</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_patient_main">PatientMainActivity</string>
-    <string name="title_activity_physician_main">PhysicianMain</string>
+    <string name="title_activity_patient_main">Patient Main</string>
+    <string name="title_activity_physician_main">Physician Main</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_physician_patient_list">PhysicianPatientListActivity</string>
+    <string name="title_activity_physician_patient_list">Physician\'s Patients</string>
     <string name="login_title">Login Error</string>
     <string name="login_failed_message">Login Failed</string>
     <string name="ok">OK</string>
