@@ -1,4 +1,4 @@
-package com.example.sbunke.medtest1;
+package com.example.sbunke.activities;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

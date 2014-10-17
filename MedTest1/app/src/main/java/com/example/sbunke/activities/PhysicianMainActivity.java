@@ -1,24 +1,33 @@
-package com.example.sbunke.medtest1;
+package com.example.sbunke.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class PatientMainActivity extends Activity {
+public class PhysicianMainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_main);
+        setContentView(R.layout.activity_physician_main);
+        GoToList();
+
+    }
+
+    private void GoToList() {
+        Intent launchIntent =
+                new Intent(this, PhysicianPatientListActivity.class);
+        this.startActivity(launchIntent);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.patient_main, menu);
+        getMenuInflater().inflate(R.menu.physician_main, menu);
         return true;
     }
 

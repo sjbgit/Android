@@ -9,10 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.sbunke.medtest1.R;
+import com.example.sbunke.activities.R;
 import com.example.sbunke.models.Patient;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

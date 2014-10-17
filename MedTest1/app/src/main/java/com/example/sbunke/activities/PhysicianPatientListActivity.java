@@ -1,4 +1,4 @@
-package com.example.sbunke.medtest1;
+package com.example.sbunke.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.sbunke.adapters.PatientArrayAdapter;
-import com.example.sbunke.dataaccess.PhysicianRepository;
+import com.example.sbunke.repositories.PhysicianRepository;
 import com.example.sbunke.models.Patient;
 
 import java.util.List;
