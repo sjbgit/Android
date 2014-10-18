@@ -12,5 +12,6 @@
     <string name="login_title">Login Error</string>
     <string name="login_failed_message">Login Failed</string>
     <string name="ok">OK</string>
+    <string name="title_activity_check_in_alarms">CheckInAlarms</string>
 
 </resources>

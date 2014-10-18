@@ -1,17 +1,37 @@
 package com.example.sbunke.activities;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class PatientMainActivity extends Activity {
+
+    private Context ctx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_main);
+
+        ctx = this;
+
+        ((Button)findViewById(R.id.btnSetCheckinAlarms)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                Intent launchIntent =
+                        new Intent(ctx, CheckInAlarms.class);
+                ctx.startActivity(launchIntent);
+                //PendingIntent contentIntent =
+                //        PendingIntent.getActivity(ctx, 0, launchIntent, 0);
+                //ctx.startActivity(launchIntent);
+            }
+        });
     }
 
 
