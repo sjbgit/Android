@@ -10,7 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
+import com.example.sbunke.models.User;
 import com.example.sbunke.models.UserCredentials;
 
 
@@ -37,6 +39,13 @@ public class LoginActivity extends Activity {
 
         ((Button)findViewById(R.id.btnLogin)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                //get user credentials from prefs, if not there then
+                UserCredentials userCredentials = getUserCredentials();
+
+                //get from screen
+
+
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
 
@@ -85,6 +94,17 @@ public class LoginActivity extends Activity {
                 ctx.startActivity(launchIntent);
             }
         });
+    }
+
+    private void handleLogin() {
+
+    }
+
+    private void retrieveFromUiValidateAndStoreUserCredentials() {
+        String userName = ((TextView)findViewById(R.id.tvUserName)).getText().toString();
+        String password = ((TextView)findViewById(R.id.tvPassword)).getText().toString();
+        saveUserCredentials(new UserCredentials(userName,password));
+
     }
 
     private UserCredentials getUserCredentials() {
