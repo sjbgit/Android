@@ -1,26 +1,24 @@
 package com.example.sbunke.models;
 
-import java.util.Date;
-
 /**
  * Created by sbunke on 10/20/2014.
  */
 public class UserCredentials {
     private String userName;
 
-    public UserType getUserType() {
+    public String getUserType() {
         return userType;
     }
 
-    public void setUserType(UserType userType) {
+    public void setUserType(String userType) {
         this.userType = userType;
     }
 
-    private UserType userType;
+    private String userType;
     private String password;
 
     //private String medicalRecordNumber;
-    public UserCredentials(String userName, String password, UserType userType) {
+    public UserCredentials(String userName, String password, String userType) {
         super();
         this.userName = userName;
         this.password = password;

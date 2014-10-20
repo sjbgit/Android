@@ -12,14 +12,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.sbunke.models.User;
 import com.example.sbunke.models.UserCredentials;
+import com.example.sbunke.models.UserType;
 
 
 public class LoginActivity extends Activity {
 
     public static final String USER_NAME = "USER_NAME";
     public static final String USER_PASSWORD = "USER_PASSWORD";
+    public static final String USER_TYPE = "USER_TYPE";
 
     private Activity ctx;
     private SharedPreferences sharedPreferences;
@@ -41,7 +42,7 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
 
                 //get user credentials from prefs, if not there then
-                UserCredentials userCredentials = getUserCredentials();
+                handleLogin();
 
                 //get from screen
 
@@ -97,24 +98,32 @@ public class LoginActivity extends Activity {
     }
 
     private void handleLogin() {
+        UserCredentials userCredentials = getUserCredentials();
 
+        retrieveFromUiValidateAndStoreUserCredentials();
     }
 
     private void retrieveFromUiValidateAndStoreUserCredentials() {
         String userName = ((TextView)findViewById(R.id.tvUserName)).getText().toString();
         String password = ((TextView)findViewById(R.id.tvPassword)).getText().toString();
-        saveUserCredentials(new UserCredentials(userName,password));
+
+        //validate and determine user type from repository
+
+
+        saveUserCredentials(new UserCredentials(userName, password, UserType.INVALID));
 
     }
 
     private UserCredentials getUserCredentials() {
-        return new UserCredentials(sharedPreferences.getString(LoginActivity.USER_NAME, ""), sharedPreferences.getString(LoginActivity.USER_PASSWORD, ""));
+        return new UserCredentials(sharedPreferences.getString(LoginActivity.USER_NAME, ""), sharedPreferences.getString(LoginActivity.USER_PASSWORD, ""), sharedPreferences.getString(LoginActivity.USER_TYPE, UserType.INVALID));
+
     }
 
     private void saveUserCredentials(UserCredentials userCredentials) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(LoginActivity.USER_NAME, userCredentials.getUserName());
         editor.putString(LoginActivity.USER_PASSWORD, userCredentials.getPassword());
+        editor.putString(LoginActivity.USER_TYPE, userCredentials.getUserType());
         editor.commit();
     }
 
