@@ -24,11 +24,12 @@ import java.util.List;
 public class PhysicianPatientListActivity extends Activity {
 
     private ProgressDialog progressDialog;
-    private List<Patient> patients = new ArrayList<Patient>();
-    private PatientArrayAdapter adapter = new PatientArrayAdapter(this, patients);
-    private PhysicianRepository repository = new PhysicianRepository();
+    private List<Patient> patients;// = new ArrayList<Patient>();
+    private PatientArrayAdapter adapter;// = new PatientArrayAdapter(this, patients);
+    private PhysicianRepository repository; // = new PhysicianRepository();
     //TODO: GET FROM INTENT
     private long ID = -999;//THIS WILL COME FROM THE PASSED IN INTENT
+    private LoadListTask task;
 
     private Context context = this;
 
@@ -36,11 +37,24 @@ public class PhysicianPatientListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_physician_patient_list);
-        InitializeList();
+
+        patients = new ArrayList<Patient>();
+        adapter = new PatientArrayAdapter(this, patients);
+        repository =  new PhysicianRepository();
+        progressDialog = new ProgressDialog(context);
+        task = new LoadListTask();
+
+        initializeList();
+        startTask();
+    }
+
+    private void startTask() {
+        //LoadListTask
+        task.execute();
     }
 
 
-    private void InitializeList() {
+    private void initializeList() {
 
         //long id = 1234;
         //PhysicianRepository repo = new PhysicianRepository();
@@ -49,8 +63,7 @@ public class PhysicianPatientListActivity extends Activity {
         //final List<Patient> patients = //repo.GetAllPatients(id);
         //PatientArrayAdapter adapter = new PatientArrayAdapter(this, patients);
 
-        LoadListTask task = new LoadListTask();
-        task.doInBackground();
+
 
         ListView patientListView = (ListView)findViewById(R.id.physicianPatientListView);
         patientListView.setAdapter(adapter);
@@ -68,28 +81,36 @@ public class PhysicianPatientListActivity extends Activity {
     }
 
     private class LoadListTask extends AsyncTask<String, Void, Integer> {
+
+        @Override
         protected void onPreExecute() {
-            progressDialog = new ProgressDialog(context);
-            progressDialog.setTitle("Processing...");
+
+            progressDialog.setTitle("Updating Patient List...");
             progressDialog.setMessage("Please wait.");
             progressDialog.setCancelable(false);
             progressDialog.setIndeterminate(true);
             progressDialog.show();
         }
 
+        @Override
         protected Integer doInBackground(String... params) {
+
+            Integer result = 0;
 
             try {
                 //Do something...
                 Thread.sleep(5000);
-                patients = repository.GetAllPatients(ID);
-                return 0;
+                //patients = repository.GetAllPatients(ID);
+                patients.clear();
+                patients.addAll(repository.GetAllPatients(ID));
+                //adapter.notifyDataSetChanged();
+                result = 1;
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
-            return 1;
+            return result;
 
             //patients = repository.GetAllPatients(ID);
             //for () {
@@ -98,6 +119,7 @@ public class PhysicianPatientListActivity extends Activity {
 
         }
 
+        @Override
         protected void onPostExecute(Integer result) {
             if (progressDialog!=null) {
                 progressDialog.dismiss();
@@ -106,7 +128,7 @@ public class PhysicianPatientListActivity extends Activity {
             }
 
             //progressDialog.dismiss();
-            if (result == 0) {
+            if (result == 1) {
                 adapter.notifyDataSetChanged();
             }
         }
