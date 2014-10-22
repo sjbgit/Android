@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -78,6 +79,33 @@ public class PhysicianPatientListActivity extends Activity {
             }
         });
 
+        registerForContextMenu(patientListView);
+
+    }
+
+    //context menu items
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.physician_patient_menu, menu);
+        menu.setHeaderTitle("Choose an Option");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        //Switch on the item's ID to find the action the user selected
+        switch(item.getItemId()) {
+            case R.id.menu_delete:
+                //Perform delete actions
+                break;
+            case R.id.menu_edit:
+                //Perform edit actions
+                break;
+            default:
+                return super.onContextItemSelected(item);
+        }
+        return true;
     }
 
     private class LoadListTask extends AsyncTask<String, Void, Integer> {
