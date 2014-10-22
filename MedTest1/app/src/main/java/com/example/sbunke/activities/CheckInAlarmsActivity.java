@@ -17,7 +17,7 @@ import com.example.sbunke.broadcastreceivers.AlarmReceiver;
 
 import java.util.Calendar;
 
-public class CheckInAlarms extends Activity {
+public class CheckInAlarmsActivity extends Activity {
 
     private Context ctx;
     private PendingIntent mAlarmIntent;

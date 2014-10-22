@@ -25,7 +25,19 @@ public class PatientMainActivity extends Activity {
             public void onClick(View v) {
                 // Perform action on click
                 Intent launchIntent =
-                        new Intent(ctx, CheckInAlarms.class);
+                        new Intent(ctx, CheckInAlarmsActivity.class);
+                ctx.startActivity(launchIntent);
+                //PendingIntent contentIntent =
+                //        PendingIntent.getActivity(ctx, 0, launchIntent, 0);
+                //ctx.startActivity(launchIntent);
+            }
+        });
+
+        ((Button)findViewById(R.id.btnPatientCheckIn)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                Intent launchIntent =
+                        new Intent(ctx, PatientCheckinActivity.class);
                 ctx.startActivity(launchIntent);
                 //PendingIntent contentIntent =
                 //        PendingIntent.getActivity(ctx, 0, launchIntent, 0);

@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.example.sbunke.activities.R;
 
-public class PatientCheckin extends Activity {
+public class PatientCheckinActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

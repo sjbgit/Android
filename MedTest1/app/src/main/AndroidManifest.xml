@@ -37,11 +37,11 @@
         </receiver>
 
         <activity
-            android:name=".CheckInAlarms"
+            android:name=".CheckInAlarmsActivity"
             android:label="@string/title_activity_check_in_alarms" >
         </activity>
         <activity
-            android:name=".PatientCheckin"
+            android:name=".PatientCheckinActivity"
             android:label="@string/title_activity_patient_checkin" >
         </activity>
     </application>
