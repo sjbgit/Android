@@ -13,5 +13,16 @@
     <string name="login_failed_message">Login Failed</string>
     <string name="ok">OK</string>
     <string name="title_activity_check_in_alarms">CheckInAlarms</string>
+    <string name="title_activity_patient_checkin">PatientCheckin</string>
+    <string name="patient_pain_question">How bad is your mouth pain/sore throat?</string>
+    <string name="pain_controlled">Well-Controlled</string>
+    <string name="pain_moderate">Moderate</string>
+    <string name="pain_severe">Severe</string>
+    <string name="medication_question">Did you take your pain medication?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="specific_medication_question">Did you take your</string>
+    <string name="pain_stop_eating">Does your pain stop you from eating/drinking?</string>
+    <string name="enter_date_and_time_of_taking_medication">Please enter date and time of taking medication</string>
 
 </resources>
