@@ -37,7 +37,7 @@ public class PatientMainActivity extends Activity {
             public void onClick(View v) {
                 // Perform action on click
                 Intent launchIntent =
-                        new Intent(ctx, PatientCheckinActivity.class);
+                        new Intent(ctx, PatientCheckInActivity.class);
                 ctx.startActivity(launchIntent);
                 //PendingIntent contentIntent =
                 //        PendingIntent.getActivity(ctx, 0, launchIntent, 0);

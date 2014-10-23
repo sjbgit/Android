@@ -4,6 +4,11 @@ package com.example.sbunke.models;
  * Created by sbunke on 10/17/2014.
  */
 public class Prescription {
+
+    public Prescription(String name){
+        this.name = name;
+    }
+
     private String name;
 
     public String getName() {
