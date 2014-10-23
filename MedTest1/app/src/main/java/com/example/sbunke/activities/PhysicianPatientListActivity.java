@@ -127,7 +127,7 @@ public class PhysicianPatientListActivity extends Activity {
 
             try {
                 //Do something...
-                Thread.sleep(5000);
+                Thread.sleep(1000);
                 //patients = repository.GetAllPatients(ID);
                 patients.clear();
                 patients.addAll(repository.GetAllPatients(ID));
