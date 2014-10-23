@@ -1,11 +1,17 @@
 package com.example.sbunke.viewmodels;
 
+import com.example.sbunke.models.Prescription;
+
 import java.util.Date;
 
 /**
  * Created by sbunke on 10/22/2014.
  */
 public class PrescriptionCheckInViewModel {
+
+    public PrescriptionCheckInViewModel(Prescription prescription){
+        prescriptionName = prescription.getName();
+    }
 
     public boolean prescriptionWasTaken() {
         return prescriptionWasTaken;

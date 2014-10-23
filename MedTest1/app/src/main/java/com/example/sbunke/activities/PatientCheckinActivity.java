@@ -6,10 +6,16 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
+
 import com.example.sbunke.activities.R;
 import com.example.sbunke.adapters.PatientArrayAdapter;
 import com.example.sbunke.adapters.PatientCheckInArrayAdapter;
 import com.example.sbunke.models.Patient;
+import com.example.sbunke.models.Prescription;
 import com.example.sbunke.repositories.PatientRepository;
 import com.example.sbunke.repositories.PhysicianRepository;
 import com.example.sbunke.viewmodels.PrescriptionCheckInViewModel;
@@ -33,6 +39,47 @@ public class PatientCheckInActivity extends Activity {
         setContentView(R.layout.activity_patient_checkin);
         prescriptionCheckInViewModels = new ArrayList<PrescriptionCheckInViewModel>();
         repository = new PatientRepository();
+        populateViewModel();
+
+        adapter = new PatientCheckInArrayAdapter(this, prescriptionCheckInViewModels);
+
+        initializeList();
+
+    }
+
+    private void populateViewModel() {
+        List<Prescription> prescriptions = repository.GetAllPrescriptionsForPatient(ID);
+
+        for (Prescription p : prescriptions) {
+            prescriptionCheckInViewModels.add(new PrescriptionCheckInViewModel(p));
+        }
+    }
+
+    private void initializeList() {
+
+        //long id = 1234;
+        //PhysicianRepository repo = new PhysicianRepository();
+        //adapter = new PatientArrayAdapter(this, patients);
+
+        //final List<Patient> patients = //repo.GetAllPatients(id);
+        //PatientArrayAdapter adapter = new PatientArrayAdapter(this, patients);
+
+
+
+        ListView patientListView = (ListView)findViewById(R.id.lvPatientCheckInPrescriptionList);
+        patientListView.setAdapter(adapter);
+        patientListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    long arg3) {
+                int index = arg2;
+                Toast.makeText(getBaseContext(),
+                        "You have selected item : " + prescriptionCheckInViewModels.get(index).getPrescriptionName(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        registerForContextMenu(patientListView);
 
     }
 
