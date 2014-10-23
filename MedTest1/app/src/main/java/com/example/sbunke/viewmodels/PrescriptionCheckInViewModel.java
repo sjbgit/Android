@@ -5,17 +5,17 @@ import java.util.Date;
 /**
  * Created by sbunke on 10/22/2014.
  */
-public class PrescriptionViewModel {
+public class PrescriptionCheckInViewModel {
 
-    public boolean isMedicationWasTaken() {
-        return medicationWasTaken;
+    public boolean prescriptionWasTaken() {
+        return prescriptionWasTaken;
     }
 
-    public void setMedicationWasTaken(boolean medicationWasTaken) {
-        this.medicationWasTaken = medicationWasTaken;
+    public void setPrescriptionWasTaken(boolean prescriptionWasTaken) {
+        this.prescriptionWasTaken = prescriptionWasTaken;
     }
 
-    private boolean medicationWasTaken;
+    private boolean prescriptionWasTaken;
 
     public Date getDateTaken() {
         return dateTaken;
