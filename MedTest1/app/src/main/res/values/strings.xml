@@ -26,5 +26,6 @@
     <string name="some">Some</string>
     <string name="not_eating">I Can\'t Eat</string>
     <string name="enter_date_and_time_of_taking_medication">Please enter date and time of taking medication</string>
+    <string name="save_checkin">Save Check-In</string>
 
 </resources>

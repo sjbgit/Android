@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -86,11 +87,44 @@ public class PatientCheckInActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+
+        inflater.inflate(R.menu.patient_checkin, menu);
+
+        //View view = (View) menu.findItem(R.id.save_checkin).getActionView();
+
+        // to get child view - example:
+        //ImageView image  = (ImageView)view.findViewById(R.id.my_item);
+        //image.setOnClickListener....
+
+        /*
+        view.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //do stuff here
+                Toast.makeText(getBaseContext(),
+                        "Thank You for Checking In",
+
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        */
+
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+
+/*
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.patient_checkin, menu);
         return true;
     }
-
+*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -98,6 +132,9 @@ public class PatientCheckInActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            return true;
+        }
+        else if (id == R.id.save_checkin){
             return true;
         }
         return super.onOptionsItemSelected(item);
