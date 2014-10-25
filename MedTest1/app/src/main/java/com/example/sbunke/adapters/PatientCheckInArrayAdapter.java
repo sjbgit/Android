@@ -7,7 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sbunke.activities.R;
 import com.example.sbunke.models.Patient;
@@ -36,11 +39,13 @@ public class PatientCheckInArrayAdapter extends ArrayAdapter<PrescriptionCheckIn
         //public ImageView imageView;
         //public TextView firstNameTv;
         public TextView tvPrescriptionTakenQuestion;
+        public RadioButton rbMedicationWasTaken;
+        public RadioGroup rbgMedicationTaken;
     }
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
-        ViewContainer viewContainer;
+        final ViewContainer viewContainer;
         View rowView = view;
 
         //---print the index of the row to examine---
@@ -59,6 +64,10 @@ public class PatientCheckInArrayAdapter extends ArrayAdapter<PrescriptionCheckIn
             //---get the references to all the views in the row---
             viewContainer.tvPrescriptionTakenQuestion = (TextView)
                     rowView.findViewById(R.id.tvPrescriptionTakenQuestion);
+
+            viewContainer.rbMedicationWasTaken = (RadioButton)rowView.findViewById(R.id.rbMedicationWasTaken);
+
+            viewContainer.rbgMedicationTaken = (RadioGroup)rowView.findViewById(R.id.rbgMedicationTaken);
 
             /*
             viewContainer.lastNameTv = (TextView)
@@ -80,6 +89,22 @@ public class PatientCheckInArrayAdapter extends ArrayAdapter<PrescriptionCheckIn
 
         //---customize the content of each row based on position---
         viewContainer.tvPrescriptionTakenQuestion.setText("Did you take your " + prescriptionCheckInViewModels.get(position).getPrescriptionName() + "?"); //[position]);
+
+        viewContainer.rbgMedicationTaken.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (viewContainer.rbMedicationWasTaken.isChecked()){
+                    Toast.makeText(context,
+                            "Medication Taken",
+                            Toast.LENGTH_SHORT).show();
+                    //https://code.google.com/p/datetimepicker/source/browse/trunk/src/com/ptashek/widgets/datetimepicker/DateTimePicker.java
+                }
+            }
+        });
+
+
+        //viewContainer.rbMedicationWasTaken.on
+
         //viewContainer.lastNameTv.setText(prescriptionCheckInViewModels.get(position).getLastName() + " ...Some descriptions here...");
         //viewContainer.imageView.setImageResource(imageIds[position]);
         return rowView;

@@ -20,6 +20,10 @@
             android:name=".NotificationActivity"
             android:label="@string/title_activity_notification" >
         </activity>
+        <activity
+            android:name=".PickDateTime"
+            android:label="@string/title_activity_pick_date_time" >
+        </activity>
     </application>
 
 </manifest>

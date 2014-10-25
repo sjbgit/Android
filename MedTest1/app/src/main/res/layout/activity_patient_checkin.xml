@@ -124,7 +124,7 @@ android:id="@+id/radioGroup">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no"
-            android:id="@+id/radioButton4"
+            android:id="@+id/rbMedicationWasTaken"
             android:checked="false"
             android:layout_below="@+id/textView2"
             android:layout_alignStart="@+id/radioButton3" />
@@ -133,10 +133,10 @@ android:id="@+id/radioGroup">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/some"
-            android:id="@+id/radioButton5"
+            android:id="@+id/rbMedicationWasNotTaken"
             android:checked="false"
-            android:layout_below="@+id/radioButton4"
-            android:layout_alignStart="@+id/radioButton4" />
+            android:layout_below="@+id/rbMedicationWasTaken"
+            android:layout_alignStart="@+id/rbMedicationWasTaken" />
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -144,8 +144,8 @@ android:id="@+id/radioGroup">
             android:text="@string/not_eating"
             android:id="@+id/radioButton6"
             android:checked="false"
-            android:layout_below="@+id/radioButton5"
-            android:layout_alignStart="@+id/radioButton5"
+            android:layout_below="@+id/rbMedicationWasNotTaken"
+            android:layout_alignStart="@+id/rbMedicationWasNotTaken"
             android:layout_alignEnd="@+id/tvMedicationQuestion" />
 
     </RadioGroup>

@@ -27,6 +27,7 @@
         >
 
         <RadioGroup
+            android:id="@+id/rbgMedicationTaken"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -36,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/yes"
-                android:id="@+id/radioButton4"
+                android:id="@+id/rbMedicationWasTaken"
                 android:checked="false"
                 android:layout_below="@+id/textView2"
                 android:layout_alignStart="@+id/radioButton3" />
@@ -45,10 +46,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/no"
-                android:id="@+id/radioButton5"
+                android:id="@+id/rbMedicationWasNotTaken"
                 android:checked="false"
-                android:layout_below="@+id/radioButton4"
-                android:layout_alignStart="@+id/radioButton4" />
+                android:layout_below="@+id/rbMedicationWasTaken"
+                android:layout_alignStart="@+id/rbMedicationWasTaken" />
         </RadioGroup>
 
         </LinearLayout>

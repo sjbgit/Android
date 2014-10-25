@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 public class MyActivity extends Activity {
 
+    private static final int REQUEST_CODE = 10;
     Context ctx;
     ListView l0, l1, l2;
     String[] presidents = {
@@ -47,6 +48,18 @@ public class MyActivity extends Activity {
             R.drawable.pic11
     };
 */
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+            if (data.hasExtra(PickDateTime.MESSAGE_KEY)) {
+                String result = data.getExtras().getString(PickDateTime.MESSAGE_KEY);
+                if (result != null && result.length() > 0) {
+                    Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -109,6 +122,21 @@ public class MyActivity extends Activity {
                 ctx.startActivity(launchIntent);
             }
         });
+
+        Button button1 = (Button)findViewById(R.id.button1);
+        button1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                Intent launchIntent =
+                        new Intent(ctx, PickDateTime.class);
+                launchIntent.putExtra(PickDateTime.MESSAGE_KEY, "Please enter the date and time");
+                startActivityForResult(launchIntent, REQUEST_CODE);
+                //PendingIntent contentIntent =
+                //        PendingIntent.getActivity(ctx, 0, launchIntent, 0);
+                //ctx.startActivity(launchIntent);
+            }
+        });
+
 
 
         AdvancedCustomArrayAdapter advancedCustomArrayAdapter =
