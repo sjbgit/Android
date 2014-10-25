@@ -8,7 +8,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 
 
 public class PickDateTime extends Activity {
@@ -34,7 +36,22 @@ public class PickDateTime extends Activity {
                 Intent intent = new Intent();
 
                 //String string = editText.getText().toString();
-                intent.putExtra(MESSAGE_KEY, "TEST");
+                DatePicker datePicker = (DatePicker)findViewById(R.id.dpDatePicker);
+                int day = datePicker.getDayOfMonth();
+                int month = datePicker.getMonth() + 1;
+                int year = datePicker.getYear();
+
+                String dateString = month + "/" + day + "/" + year;
+
+                TimePicker timePicker = (TimePicker)findViewById(R.id.tpTimePicker);
+                int hour = timePicker.getCurrentHour();
+                int minute = timePicker.getCurrentMinute();
+
+                String result = dateString + " - " + hour + ":" + minute;
+
+
+
+                intent.putExtra(MESSAGE_KEY, result);
                 setResult(RESULT_OK, intent);
                 //super.finish();
 
