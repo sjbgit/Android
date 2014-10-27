@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 
@@ -27,6 +28,9 @@ public class PickDateTime extends Activity {
 
         Bundle extras = getIntent().getExtras();
         String inputString = extras.getString(MESSAGE_KEY);
+
+        TextView messageView = (TextView)findViewById(R.id.tvDateTimePickMessage);
+        messageView.setText(inputString);
 
         Button button = (Button)findViewById(R.id.btnDateTimeSelected);
         button.setOnClickListener(new View.OnClickListener() {

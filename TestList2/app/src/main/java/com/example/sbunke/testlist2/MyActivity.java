@@ -129,7 +129,7 @@ public class MyActivity extends Activity {
                 // Perform action on click
                 Intent launchIntent =
                         new Intent(ctx, PickDateTime.class);
-                launchIntent.putExtra(PickDateTime.MESSAGE_KEY, "Please enter the date and time");
+                launchIntent.putExtra(PickDateTime.MESSAGE_KEY, "When did you take your OxyContin?");
                 startActivityForResult(launchIntent, REQUEST_CODE);
                 //PendingIntent contentIntent =
                 //        PendingIntent.getActivity(ctx, 0, launchIntent, 0);
