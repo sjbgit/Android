@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.sbunke.helpers.NotificationHelper;
+
 
 public class PatientMainActivity extends Activity {
 
@@ -20,6 +22,8 @@ public class PatientMainActivity extends Activity {
         setContentView(R.layout.activity_patient_main);
 
         ctx = this;
+
+        //NotificationHelper.showNotification(ctx);
 
         ((Button)findViewById(R.id.btnSetCheckinAlarms)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
