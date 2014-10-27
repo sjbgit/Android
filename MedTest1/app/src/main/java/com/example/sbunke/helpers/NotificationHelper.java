@@ -28,13 +28,16 @@ public class NotificationHelper {
 
         //Post 4 unique notifications
         Notification note = buildNotification(NOTE_BASIC, context);
+        note.flags = Notification.DEFAULT_LIGHTS | Notification.FLAG_AUTO_CANCEL;
         manager.notify(NOTE_BASIC, note);
+        /*
         note = buildNotification(NOTE_BIGTEXT, context);
         manager.notify(NOTE_BIGTEXT, note);
         note = buildNotification(NOTE_PICTURE, context);
         manager.notify(NOTE_PICTURE, note);
         note = buildNotification(NOTE_INBOX, context);
         manager.notify(NOTE_INBOX, note);
+        */
     }
 
     public static Notification buildNotification(int type, Context context) {
@@ -49,12 +52,12 @@ public class NotificationHelper {
                 context);
 
 
-        builder.setSmallIcon(R.drawable.ic_launcher)
-                .setTicker("Something Happened")
+        builder.setSmallIcon(R.drawable.kcmdrkonqi)
+                .setTicker("Symptom Manager Check-In Reminder")
                 .setWhen(System.currentTimeMillis())
-                .setAutoCancel(true)
+                //.setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_SOUND)
-                .setContentTitle("We're Finished!")
+                .setContentTitle("Time to check-in")
                 .setContentText("Click Here!")
                 .setContentIntent(contentIntent);
 
@@ -83,7 +86,7 @@ public class NotificationHelper {
                 //Use the BigPictureStyle when expanded
                 Notification.BigPictureStyle pictureStyle =
                         new Notification.BigPictureStyle(builder);
-                pictureStyle.bigPicture(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher));
+                pictureStyle.bigPicture(BitmapFactory.decodeResource(context.getResources(), R.drawable.kcmdrkonqi));
 
                 return pictureStyle.build();
             case NOTE_INBOX:
