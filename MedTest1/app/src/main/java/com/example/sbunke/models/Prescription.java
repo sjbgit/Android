@@ -19,13 +19,13 @@ public class Prescription {
         this.name = name;
     }
 
-    public int getDosage() {
+    public String getDosage() {
         return dosage;
     }
 
-    public void setDosage(int dosage) {
+    public void setDosage(String dosage) {
         this.dosage = dosage;
     }
 
-    private int dosage;
+    private String dosage;
 }
