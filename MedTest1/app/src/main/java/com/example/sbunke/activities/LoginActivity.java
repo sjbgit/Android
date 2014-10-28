@@ -124,6 +124,7 @@ public class LoginActivity extends Activity {
         editor.putString(LoginActivity.USER_NAME, userCredentials.getUserName());
         editor.putString(LoginActivity.USER_PASSWORD, userCredentials.getPassword());
         editor.putString(LoginActivity.USER_TYPE, userCredentials.getUserType());
+        //TODO - STORE USER ID - WILL BE PASSED TO OTHER ACTIVITIES
         editor.commit();
     }
 

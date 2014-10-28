@@ -44,6 +44,10 @@
             android:name=".PatientCheckInActivity"
             android:label="@string/title_activity_patient_checkin" >
         </activity>
+        <activity
+            android:name=".PatientMedicationListActivity"
+            android:label="@string/title_activity_patient_medication_list" >
+        </activity>
     </application>
 
 </manifest>
