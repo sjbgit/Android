@@ -28,6 +28,6 @@
     <string name="enter_date_and_time_of_taking_medication">Please enter date and time of taking medication</string>
     <string name="save_checkin">Save Check-In</string>
     <string name="title_activity_patient_medication_list">PatientMedicationListActivity</string>
-    <string name="title_activity_patient_prescriptions_list">PatientPrescriptionsListActivity</string>
+    <string name="title_activity_patient_prescriptions_list">Patient Prescriptions</string>
 
 </resources>

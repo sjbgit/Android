@@ -3,6 +3,7 @@ package com.example.sbunke.activities;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -96,10 +97,13 @@ public class PhysicianPatientListActivity extends Activity {
     public boolean onContextItemSelected(MenuItem item) {
         //Switch on the item's ID to find the action the user selected
         switch(item.getItemId()) {
-            case R.id.menu_delete:
+            case R.id.menu_physician_patient_checkins:
                 //Perform delete actions
                 break;
-            case R.id.menu_edit:
+            case R.id.menu_physician_patient_prescriptions:
+                Intent launchIntent =
+                        new Intent(this, PatientPrescriptionsListActivity.class);
+                this.startActivity(launchIntent);
                 //Perform edit actions
                 break;
             default:

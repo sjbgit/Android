@@ -12,6 +12,8 @@ public class PatientMedicationListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_medication_list);
+
+
     }
 
 

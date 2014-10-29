@@ -13,8 +13,8 @@ public class PatientRepository {
 
     public List<Prescription> GetAllPrescriptionsForPatient(long id) {
         List<Prescription> prescriptions = new ArrayList<Prescription>();
-        prescriptions.add(new Prescription("Lortab"));
-        prescriptions.add(new Prescription("OxyContin"));
+        prescriptions.add(new Prescription("Lortab", "1000 mg"));
+        prescriptions.add(new Prescription("OxyContin", "250 mg"));
 
         /*
         prescriptions.add(new Prescription("first name3"));

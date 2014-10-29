@@ -5,8 +5,9 @@ package com.example.sbunke.models;
  */
 public class Prescription {
 
-    public Prescription(String name){
+    public Prescription(String name, String dosage){
         this.name = name;
+        this.dosage = dosage;
     }
 
     private String name;

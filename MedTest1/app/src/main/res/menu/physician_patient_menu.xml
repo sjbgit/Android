@@ -4,14 +4,14 @@
     android:layout_height="match_parent">
 
     <item
-        android:id="@+id/menu_delete"
+        android:id="@+id/menu_physician_patient_checkins"
 
-        android:title="Check-ins"
+        android:title="Check-Ins"
         />
     <item
-        android:id="@+id/menu_edit"
+        android:id="@+id/menu_physician_patient_prescriptions"
 
-        android:title="Medications"
+        android:title="Prescriptions"
         />
 
 </menu>
