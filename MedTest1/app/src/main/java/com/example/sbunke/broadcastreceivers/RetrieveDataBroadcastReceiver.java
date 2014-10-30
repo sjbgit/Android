@@ -33,22 +33,34 @@ public class RetrieveDataBroadcastReceiver extends BroadcastReceiver {
 
         NotificationHelper.showNotification(context);
 
+
+        //NOTE - UNCOMMENT THIS TO GET BOOT BASED RECURRING NOTIFICATIONS TO WORK
         //setRecurringNotifications(context);
     }
 
     private void setRecurringNotifications(Context context) {
         AlarmManager manager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent launchIntent = new Intent(context, RetrieveDataBroadcastReceiver.class);
+        Intent launchIntent = new Intent(context, AlarmReceiver.class);
         PendingIntent mAlarmIntent = PendingIntent.getBroadcast(context, 0, launchIntent, 0);
         long oneDay = 24*3600*1000;
         //long nextMessage = 30000;
         long nextMessage = 1000 * 60 * 5;
         Calendar now = Calendar.getInstance();
 
+
+        //the other approach is to call something else entirely that will handle this
+        //manager.set(AlarmManager.RTC_WAKEUP, nextMessage, mAlarmIntent);
+
         manager.setRepeating(AlarmManager.RTC_WAKEUP,
                 now.getTimeInMillis(),
                 nextMessage,
                 mAlarmIntent);
 
+        /*
+        manager.setRepeating(AlarmManager.RTC_WAKEUP,
+                now.getTimeInMillis(),
+                nextMessage,
+                mAlarmIntent);
+        */
     }
 }
