@@ -34,6 +34,10 @@ public class RetrieveDataBroadcastReceiver extends BroadcastReceiver {
         NotificationHelper.showNotification(context);
 
 
+        //TODO - READ PATIENT ENTERED ALARM TIMES FOR CHECK-IN REMINDERS
+        //GET USER PREFERENCES, IF PHYSICIAN..., IF PATIENT...
+
+
         //NOTE - UNCOMMENT THIS TO GET BOOT BASED RECURRING NOTIFICATIONS TO WORK
         //setRecurringNotifications(context);
     }
