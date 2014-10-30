@@ -10,6 +10,9 @@ import android.graphics.BitmapFactory;
 import com.example.sbunke.activities.PatientCheckInActivity;
 import com.example.sbunke.activities.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * Created by sbunke on 10/17/2014.
  */
@@ -57,9 +60,9 @@ public class NotificationHelper {
                 .setWhen(System.currentTimeMillis())
                 //.setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_SOUND)
-                .setContentTitle("Time to check-in")
-                .setContentText("Click Here!")
-                .setContentIntent(contentIntent);
+                .setContentTitle("Time to check-in " + SimpleDateFormat.getTimeInstance().format(Calendar.getInstance().getTime()))
+                        .setContentText("Click Here!")
+                        .setContentIntent(contentIntent);
 
         switch (type) {
             case NOTE_BASIC:
