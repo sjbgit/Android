@@ -1,6 +1,7 @@
 package com.example.sbunke.activities;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +37,10 @@ public class PatientPrescriptionsListActivity extends Activity {
         populateList();
         adapter = new PatientPrescriptionsArrayAdapter(this, prescriptions);
         initializeList();
+
+        Integer i = 1;
+
+        //PendingIntent.getService(this, 1, i, 0);
     }
 
 
