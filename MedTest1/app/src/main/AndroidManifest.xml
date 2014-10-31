@@ -68,6 +68,10 @@
             android:name=".PatientCheckInHistoryActivity"
             android:label="@string/title_activity_patient_check_in_history" >
         </activity>
+        <activity
+            android:name=".PatientCheckInAlarmsListActivity"
+            android:label="@string/title_activity_patient_check_in_alarms_list" >
+        </activity>
     </application>
 
 </manifest>

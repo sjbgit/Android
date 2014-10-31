@@ -31,5 +31,6 @@
     <string name="title_activity_patient_prescriptions_list">Patient Prescriptions</string>
     <string name="title_activity_patient_check_in_history">PatientCheckInHistoryActivity</string>
     <string name="take_pain_medication_question">Did you take your pain medication?</string>
+    <string name="title_activity_patient_check_in_alarms_list">PatientCheckInAlarmsListActivity</string>
 
 </resources>
