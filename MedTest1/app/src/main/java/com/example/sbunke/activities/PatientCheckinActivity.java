@@ -57,9 +57,15 @@ public class PatientCheckInActivity extends Activity {
 
     private void setRadioButtonListeners() {
 
+
+
         final RadioGroup rbMedicationTakenGroup = ((RadioGroup)findViewById(R.id.rbgCheckInMedicationTaken));
         final RadioButton rbMedicationWasTaken = (RadioButton)findViewById(R.id.rbTookPainMedication);
         final RadioButton rbDidNotTakePainMedication = (RadioButton)findViewById(R.id.rbDidNotTakePainMedication);
+        final ListView lvMedications = (ListView)findViewById(R.id.lvPatientCheckInPrescriptionList);
+
+        lvMedications.setVisibility(View.INVISIBLE);
+
 
         rbMedicationTakenGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
@@ -68,6 +74,7 @@ public class PatientCheckInActivity extends Activity {
                             Toast.makeText(context,
                                     "Medication Taken",
                                     Toast.LENGTH_SHORT).show();
+                            lvMedications.setVisibility(View.VISIBLE);
                             //https://code.google.com/p/datetimepicker/source/browse/trunk/src/com/ptashek/widgets/datetimepicker/DateTimePicker.java
                         }
 
@@ -75,6 +82,7 @@ public class PatientCheckInActivity extends Activity {
                             Toast.makeText(context,
                                     "Medication NOT Taken",
                                     Toast.LENGTH_SHORT).show();
+                            lvMedications.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
