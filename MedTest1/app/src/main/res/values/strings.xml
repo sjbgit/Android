@@ -29,5 +29,6 @@
     <string name="save_checkin">Save Check-In</string>
     <string name="title_activity_patient_medication_list">PatientMedicationListActivity</string>
     <string name="title_activity_patient_prescriptions_list">Patient Prescriptions</string>
+    <string name="title_activity_patient_check_in_history">PatientCheckInHistoryActivity</string>
 
 </resources>
