@@ -150,6 +150,45 @@ android:id="@+id/radioGroup">
 
     </RadioGroup>
 
+    <TextView
+        android:text="@string/take_pain_medication_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewa"
+
+        android:layout_centerHorizontal="true" />
+
+    <RadioGroup
+        android:id="@+id/rbgCheckInMedicationTaken"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yes"
+            android:id="@+id/rbTookPainMedication"
+            android:checked="false"
+            android:layout_below="@+id/textView2"
+            android:layout_alignStart="@+id/radioButton3" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no"
+            android:id="@+id/rbDidNotTakePainMedication"
+            android:checked="false"
+            android:layout_below="@+id/rbMedicationWasTaken"
+            android:layout_alignStart="@+id/rbMedicationWasTaken" />
+
+
+
+    </RadioGroup>
+
+
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

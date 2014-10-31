@@ -2,6 +2,7 @@ package com.example.sbunke.activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.sbunke.activities.R;
@@ -33,6 +36,7 @@ public class PatientCheckInActivity extends Activity {
     //TODO: GET FROM INTENT
     private long ID = -999;//THIS WILL COME FROM THE PASSED IN INTENT
     //private LoadListTask task;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +46,38 @@ public class PatientCheckInActivity extends Activity {
         repository = new PatientRepository();
         populateViewModel();
 
+        context = this;
         adapter = new PatientCheckInArrayAdapter(this, prescriptionCheckInViewModels);
 
         initializeList();
 
+        setRadioButtonListeners();
+
+    }
+
+    private void setRadioButtonListeners() {
+
+        final RadioGroup rbMedicationTakenGroup = ((RadioGroup)findViewById(R.id.rbgCheckInMedicationTaken));
+        final RadioButton rbMedicationWasTaken = (RadioButton)findViewById(R.id.rbTookPainMedication);
+        final RadioButton rbDidNotTakePainMedication = (RadioButton)findViewById(R.id.rbDidNotTakePainMedication);
+
+        rbMedicationTakenGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                        if (rbMedicationWasTaken.isChecked()) {
+                            Toast.makeText(context,
+                                    "Medication Taken",
+                                    Toast.LENGTH_SHORT).show();
+                            //https://code.google.com/p/datetimepicker/source/browse/trunk/src/com/ptashek/widgets/datetimepicker/DateTimePicker.java
+                        }
+
+                        if(rbDidNotTakePainMedication.isChecked()) {
+                            Toast.makeText(context,
+                                    "Medication NOT Taken",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     private void populateViewModel() {
