@@ -4,14 +4,78 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
+
 import com.example.sbunke.activities.R;
+import com.example.sbunke.adapters.PatientAlarmArrayAdapter;
+import com.example.sbunke.models.Patient;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class PatientCheckInAlarmsListActivity extends Activity {
+
+    private List<Date> dates;
+    private PatientAlarmArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_check_in_alarms_list);
+        this.dates = getAlarmDatesFromPreferences();
+
+        adapter = new PatientAlarmArrayAdapter(this, dates);
+        initializeList();
+
+    }
+
+    private List<Date> getAlarmDatesFromPreferences() {
+        //set default if there are none - patient's first time use
+
+        int[] numbers = {8,12,16,20};
+
+        List<Date> dates = new ArrayList<Date>();
+        for (int item : numbers){
+            Date newDate = new Date();
+            newDate.setHours(item);
+            newDate.setMinutes(0);
+            dates.add(newDate);
+            //dates.add();
+        }
+        return dates;
+
+    }
+
+    private void initializeList() {
+
+        //long id = 1234;
+        //PhysicianRepository repo = new PhysicianRepository();
+        //adapter = new PatientArrayAdapter(this, patients);
+
+        //final List<Patient> patients = //repo.GetAllPatients(id);
+        //PatientArrayAdapter adapter = new PatientArrayAdapter(this, patients);
+
+
+
+        ListView patientListView = (ListView)findViewById(R.id.lvPatientCheckInAlarmsList);
+        patientListView.setAdapter(adapter);
+        patientListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    long arg3) {
+                int index = arg2;
+                Toast.makeText(getBaseContext(),
+                        "You have selected item : " + dates.get(index).toString(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //registerForContextMenu(patientListView);
+
     }
 
 

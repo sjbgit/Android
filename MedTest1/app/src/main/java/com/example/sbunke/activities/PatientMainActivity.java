@@ -28,9 +28,17 @@ public class PatientMainActivity extends Activity {
         ((Button)findViewById(R.id.btnSetCheckinAlarms)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
+
+                Intent launchIntent =
+                        new Intent(ctx, PatientCheckInAlarmsListActivity.class);
+                ctx.startActivity(launchIntent);
+
+                /*
                 Intent launchIntent =
                         new Intent(ctx, CheckInAlarmsActivity.class);
                 ctx.startActivity(launchIntent);
+                */
+
                 //PendingIntent contentIntent =
                 //        PendingIntent.getActivity(ctx, 0, launchIntent, 0);
                 //ctx.startActivity(launchIntent);
@@ -52,9 +60,14 @@ public class PatientMainActivity extends Activity {
         ((Button)findViewById(R.id.btnPatientCheckIn)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
+
+
+
                 Intent launchIntent =
                         new Intent(ctx, PatientCheckInActivity.class);
                 ctx.startActivity(launchIntent);
+
+
                 //PendingIntent contentIntent =
                 //        PendingIntent.getActivity(ctx, 0, launchIntent, 0);
                 //ctx.startActivity(launchIntent);
