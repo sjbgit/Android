@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.sbunke.activities.R;
 import com.example.sbunke.adapters.PatientAlarmArrayAdapter;
+import com.example.sbunke.adapters.PatientAlarmTimePickerArrayAdapter;
 import com.example.sbunke.models.Patient;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import java.util.List;
 public class PatientCheckInAlarmsListActivity extends Activity {
 
     private List<Date> dates;
-    private PatientAlarmArrayAdapter adapter;
+    private PatientAlarmTimePickerArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class PatientCheckInAlarmsListActivity extends Activity {
         setContentView(R.layout.activity_patient_check_in_alarms_list);
         this.dates = getAlarmDatesFromPreferences();
 
-        adapter = new PatientAlarmArrayAdapter(this, dates);
+        adapter = new PatientAlarmTimePickerArrayAdapter(this, dates);
         initializeList();
 
     }
