@@ -24,6 +24,10 @@
             android:name=".PickDateTime"
             android:label="@string/title_activity_pick_date_time" >
         </activity>
+        <activity
+            android:name=".TestDrawPieChart1"
+            android:label="@string/title_activity_test_draw_pie_chart1" >
+        </activity>
     </application>
 
 </manifest>

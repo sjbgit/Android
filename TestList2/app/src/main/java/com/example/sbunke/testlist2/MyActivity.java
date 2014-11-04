@@ -137,6 +137,20 @@ public class MyActivity extends Activity {
             }
         });
 
+        Button buttonPie = (Button)findViewById(R.id.button1);
+        buttonPie.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                Intent launchIntent =
+                        new Intent(ctx, TestDrawPieChart1.class);
+                launchIntent.putExtra(PickDateTime.MESSAGE_KEY, "When did you take your OxyContin?");
+                startActivityForResult(launchIntent, REQUEST_CODE);
+                //PendingIntent contentIntent =
+                //        PendingIntent.getActivity(ctx, 0, launchIntent, 0);
+                //ctx.startActivity(launchIntent);
+            }
+        });
+
 
 
         AdvancedCustomArrayAdapter advancedCustomArrayAdapter =

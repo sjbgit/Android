@@ -19,7 +19,14 @@
             android:text="Pick Date and Time"
             android:id="@+id/button1" />
 
-        </LinearLayout>
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pie"
+            android:id="@+id/btnPieChart" />
+
+    </LinearLayout>
 
 
     <TextView
