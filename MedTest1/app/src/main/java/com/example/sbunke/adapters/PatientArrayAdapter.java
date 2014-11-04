@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sbunke.activities.R;
 import com.example.sbunke.models.Patient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +24,8 @@ public class PatientArrayAdapter extends ArrayAdapter<Patient> {
     private final Activity context;
     private List<Patient> patients; // = new ArrayList<Patient>();
     //protected final Integer[] imageIds;
+    private PatientFilter patientFilter;
+
 
     public PatientArrayAdapter(
             Activity context, List<Patient> patients) {
@@ -81,4 +85,62 @@ public class PatientArrayAdapter extends ArrayAdapter<Patient> {
         //viewContainer.imageView.setImageResource(imageIds[position]);
         return rowView;
     }
+
+    @Override
+    public Filter getFilter() {
+        if (patientFilter == null) {
+            patientFilter = new PatientFilter();
+        }
+
+
+        return patientFilter;
+    }
+
+    public class PatientFilter extends Filter {
+
+        //private List<Patient> patients;
+/*
+        public PatientFilter(List<Patient> patients) {
+            this.patients = patients;
+        }
+  */
+        @Override
+        protected Filter.FilterResults performFiltering(CharSequence constraint) {
+            FilterResults results = new FilterResults();
+            // We implement here the filter logic
+            if (constraint == null || constraint.length() == 0) {
+                // No filter implemented we return all the list
+                results.values = patients;
+                results.count = patients.size();
+            }
+            else {
+                // We perform filtering operation
+                List<Patient> nPatientList = new ArrayList<Patient>();
+
+                for (Patient p : patients) {
+                    if (p.getLastName().toUpperCase().startsWith(constraint.toString().toUpperCase()))
+                        nPatientList.add(p);
+                }
+
+                results.values = nPatientList;
+                results.count = nPatientList.size();
+
+            }
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint,FilterResults results) {
+            // Now we have to inform the adapter about the new list filtered
+            if (results.count == 0)
+                notifyDataSetInvalidated();
+            else {
+                patients = (List<Patient>) results.values;
+                notifyDataSetChanged();
+            }
+
+        }
+
+    }
+
 }

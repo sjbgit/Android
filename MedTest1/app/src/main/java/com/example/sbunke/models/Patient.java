@@ -7,6 +7,11 @@ import java.util.Collection;
  */
 public class Patient extends User {
 
+    public Patient(String firstName, String lastName) {
+        this.setLastName(lastName);
+        this.setFirstName(firstName);
+    }
+
     public Patient(String firstName) {
         this.setFirstName(firstName);
     }

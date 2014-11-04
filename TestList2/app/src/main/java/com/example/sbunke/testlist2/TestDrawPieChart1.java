@@ -40,12 +40,14 @@ public class TestDrawPieChart1 extends Activity {
         return data;
 
     }
+
+    //http://stackoverflow.com/questions/4397192/draw-pie-chart-in-android?lq=1
     public class MyGraphview extends View
     {
         private Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG);
         private float[] value_degree;
         private int[] COLORS={Color.BLUE,Color.GREEN,Color.GRAY,Color.CYAN,Color.RED};
-        RectF rectf = new RectF (10, 10, 200, 200);
+        RectF rectf = new RectF (10, 10, 400, 400);
         int temp=0;
         public MyGraphview(Context context, float[] values) {
 

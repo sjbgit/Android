@@ -137,7 +137,7 @@ public class MyActivity extends Activity {
             }
         });
 
-        Button buttonPie = (Button)findViewById(R.id.button1);
+        Button buttonPie = (Button)findViewById(R.id.btnPieChart);
         buttonPie.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click

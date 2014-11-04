@@ -6,11 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -48,6 +51,8 @@ public class PhysicianPatientListActivity extends Activity {
 
         initializeList();
         startTask();
+
+        addFilter();
     }
 
     private void startTask() {
@@ -82,6 +87,28 @@ public class PhysicianPatientListActivity extends Activity {
 
         registerForContextMenu(patientListView);
 
+    }
+
+    private void addFilter() {
+        EditText filterPatientList = (EditText)findViewById(R.id.etFilterPatientList);
+        filterPatientList.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                System.out.println("Text ["+s+"]");
+                adapter.getFilter().filter(s.toString());
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
     }
 
     //context menu items
