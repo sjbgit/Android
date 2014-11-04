@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sbunke.activities.R;
+import com.example.sbunke.filters.PatientFilter;
 import com.example.sbunke.models.Patient;
 
 import java.util.ArrayList;
@@ -19,10 +21,11 @@ import java.util.List;
 /**
  * Created by sbunke on 10/16/2014.
  */
-public class PatientArrayAdapter extends ArrayAdapter<Patient> {
+public class PatientArrayAdapter extends ArrayAdapter<Patient> implements Filterable{
 
     private final Activity context;
     private List<Patient> patients; // = new ArrayList<Patient>();
+    private List<Patient> filteredPatients;
     //protected final Integer[] imageIds;
     private PatientFilter patientFilter;
 
@@ -32,7 +35,20 @@ public class PatientArrayAdapter extends ArrayAdapter<Patient> {
         super(context, R.layout.patient_row_layout, patients);
         this.context = context;
         this.patients = patients;
+        this.filteredPatients = patients;
         //this.imageIds = imageIds;
+    }
+
+    public int getCount() {
+        return filteredPatients.size();
+    }
+
+    public Patient getItem(int position) {
+        return filteredPatients.get(position);
+    }
+
+    public long getItemId(int position) {
+        return position;
     }
 
     static class ViewContainer {
@@ -104,9 +120,13 @@ public class PatientArrayAdapter extends ArrayAdapter<Patient> {
             this.patients = patients;
         }
   */
+
+
         @Override
-        protected Filter.FilterResults performFiltering(CharSequence constraint) {
+        protected FilterResults performFiltering(CharSequence constraint) {
+
             FilterResults results = new FilterResults();
+
             // We implement here the filter logic
             if (constraint == null || constraint.length() == 0) {
                 // No filter implemented we return all the list
@@ -126,16 +146,24 @@ public class PatientArrayAdapter extends ArrayAdapter<Patient> {
                 results.count = nPatientList.size();
 
             }
+
+
+            //this works
+            /*
+            results.values = patients;
+            results.count = patients.size();
+            */
             return results;
         }
 
+        @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint,FilterResults results) {
             // Now we have to inform the adapter about the new list filtered
             if (results.count == 0)
                 notifyDataSetInvalidated();
             else {
-                patients = (List<Patient>) results.values;
+                filteredPatients = (List<Patient>) results.values;
                 notifyDataSetChanged();
             }
 
