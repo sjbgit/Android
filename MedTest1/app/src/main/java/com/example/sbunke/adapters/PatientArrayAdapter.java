@@ -25,7 +25,7 @@ public class PatientArrayAdapter extends ArrayAdapter<Patient> implements Filter
 
     private final Activity context;
     private List<Patient> patients; // = new ArrayList<Patient>();
-    private List<Patient> filteredPatients;
+    private List<Patient> originalPatientList;
     //protected final Integer[] imageIds;
     private PatientFilter patientFilter;
 
@@ -35,16 +35,16 @@ public class PatientArrayAdapter extends ArrayAdapter<Patient> implements Filter
         super(context, R.layout.patient_row_layout, patients);
         this.context = context;
         this.patients = patients;
-        this.filteredPatients = patients;
+        this.originalPatientList = patients;
         //this.imageIds = imageIds;
     }
 
     public int getCount() {
-        return filteredPatients.size();
+        return patients.size();
     }
 
     public Patient getItem(int position) {
-        return filteredPatients.get(position);
+        return patients.get(position);
     }
 
     public long getItemId(int position) {
@@ -130,14 +130,14 @@ public class PatientArrayAdapter extends ArrayAdapter<Patient> implements Filter
             // We implement here the filter logic
             if (constraint == null || constraint.length() == 0) {
                 // No filter implemented we return all the list
-                results.values = patients;
-                results.count = patients.size();
+                results.values = originalPatientList;
+                results.count = originalPatientList.size();
             }
             else {
                 // We perform filtering operation
                 List<Patient> nPatientList = new ArrayList<Patient>();
 
-                for (Patient p : patients) {
+                for (Patient p : originalPatientList) {
                     if (p.getLastName().toUpperCase().startsWith(constraint.toString().toUpperCase()))
                         nPatientList.add(p);
                 }
@@ -160,12 +160,12 @@ public class PatientArrayAdapter extends ArrayAdapter<Patient> implements Filter
         @Override
         protected void publishResults(CharSequence constraint,FilterResults results) {
             // Now we have to inform the adapter about the new list filtered
-            if (results.count == 0)
-                notifyDataSetInvalidated();
-            else {
-                filteredPatients = (List<Patient>) results.values;
+            //if (results.count == 0)
+            //    notifyDataSetInvalidated();
+            //else {
+                patients = (List<Patient>) results.values;
                 notifyDataSetChanged();
-            }
+            //}
 
         }
 
