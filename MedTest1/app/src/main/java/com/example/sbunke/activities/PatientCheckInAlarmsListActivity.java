@@ -64,6 +64,10 @@ public class PatientCheckInAlarmsListActivity extends Activity {
             dates.add(newDate);
             //dates.add();
         }
+
+        for (Date item : alarmDateTimes) {
+            dates.add(item);
+        }
         return dates;
 
     }
