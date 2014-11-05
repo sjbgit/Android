@@ -1,6 +1,7 @@
 package com.example.sbunke.activities;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.example.sbunke.activities.R;
 import com.example.sbunke.adapters.PatientAlarmArrayAdapter;
 import com.example.sbunke.adapters.PatientAlarmTimePickerArrayAdapter;
+import com.example.sbunke.helpers.SharedPreferencesHelper;
 import com.example.sbunke.models.Patient;
 
 import java.util.ArrayList;
@@ -22,20 +24,35 @@ public class PatientCheckInAlarmsListActivity extends Activity {
 
     private List<Date> dates;
     private PatientAlarmTimePickerArrayAdapter adapter;
+    SharedPreferencesHelper helper;
+
+    //public static final String USER_ALARMS = "USER_ALARMS";
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_check_in_alarms_list);
+
+        sharedPreferences = getPreferences(Activity.MODE_PRIVATE);
+        helper = new SharedPreferencesHelper(sharedPreferences);
+
         this.dates = getAlarmDatesFromPreferences();
 
         adapter = new PatientAlarmTimePickerArrayAdapter(this, dates);
+
         initializeList();
 
     }
 
     private List<Date> getAlarmDatesFromPreferences() {
         //set default if there are none - patient's first time use
+
+        List<Date> alarmDateTimes = helper.getAlarmTimesFromPreferences();
+
+
+
+
 
         int[] numbers = {8,12,16,20};
 
