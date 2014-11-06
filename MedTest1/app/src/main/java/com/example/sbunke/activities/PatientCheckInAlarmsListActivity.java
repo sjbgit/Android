@@ -66,6 +66,36 @@ public class PatientCheckInAlarmsListActivity extends Activity {
         ((Button)findViewById(R.id.btnAddAlarm)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                //add alarm to lis and update adapter
+                TimePickerDialog mTimePicker;
+
+                final Date date = new Date();
+                mTimePicker = new TimePickerDialog(activity, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+
+                        date.setHours(selectedHour);
+                        date.setMinutes(selectedMinute);
+                        dates.add(date);
+
+                        //Date date = dates.get(pos);
+
+                        //date.setHours(selectedHour);
+                        //date.setMinutes(selectedMinute);
+
+                        //viewContainer.tvAlarmTime.setText(date.getHours() + ":" + date.getMinutes());
+
+                        //eReminderTime.setText( selectedHour + ":" + selectedMinute);
+                        Toast.makeText(activity,
+                                "Selected hour " + selectedHour + " selected minute " + selectedMinute ,
+                                Toast.LENGTH_SHORT).show();
+
+                        adapter.notifyDataSetChanged();
+
+
+                    }
+                }, date.getHours(), date.getMinutes(), true);//Yes 24 hour time
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
             }
         });
 
