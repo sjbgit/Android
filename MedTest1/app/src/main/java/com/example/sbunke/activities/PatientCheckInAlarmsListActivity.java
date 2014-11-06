@@ -1,13 +1,17 @@
 package com.example.sbunke.activities;
 
 import android.app.Activity;
+import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.sbunke.activities.R;
@@ -25,6 +29,7 @@ public class PatientCheckInAlarmsListActivity extends Activity {
     private List<Date> dates;
     private PatientAlarmTimePickerArrayAdapter adapter;
     SharedPreferencesHelper helper;
+    private PatientCheckInAlarmsListActivity activity;
 
     //public static final String USER_ALARMS = "USER_ALARMS";
     private SharedPreferences sharedPreferences;
@@ -37,13 +42,34 @@ public class PatientCheckInAlarmsListActivity extends Activity {
         sharedPreferences = getPreferences(Activity.MODE_PRIVATE);
         helper = new SharedPreferencesHelper(sharedPreferences);
 
+        this.activity = this;
+
         this.dates = getAlarmDatesFromPreferences();
 
         adapter = new PatientAlarmTimePickerArrayAdapter(this, dates);
 
         initializeList();
 
+        initializeButtons();
     }
+
+    private void initializeButtons() {
+        ((Button)findViewById(R.id.btnSaveAlarmChanges)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+              //create string and save in preferences
+
+                helper.saveAlarmTimes(activity.dates);
+            }
+        });
+
+        ((Button)findViewById(R.id.btnAddAlarm)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+               //add alarm to lis and update adapter
+            }
+        });
+
+    }
+
 
     private List<Date> getAlarmDatesFromPreferences() {
         //set default if there are none - patient's first time use

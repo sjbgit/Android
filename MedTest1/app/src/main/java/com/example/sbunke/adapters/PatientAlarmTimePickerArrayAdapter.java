@@ -86,6 +86,11 @@ public class PatientAlarmTimePickerArrayAdapter extends ArrayAdapter<Date> {
 
         final int pos = position;
 
+        if (position <= 3) {
+            viewContainer.btnDeleteTime.setVisibility(View.INVISIBLE);
+        }
+        //viewContainer.btnDeleteTime
+
         viewContainer.btnEditTime.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 TimePickerDialog mTimePicker;

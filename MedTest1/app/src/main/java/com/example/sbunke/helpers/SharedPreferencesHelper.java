@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class SharedPreferencesHelper {
     private final String TAG = "SharedPreferencesHelper";
+    //public static SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss a");
     public static SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMM dd, yyyy HH:mm:ss a");
     public static final String USER_ALARMS = "USER_ALARMS";
     private SharedPreferences sharedPreferences;
@@ -31,7 +32,7 @@ public class SharedPreferencesHelper {
         List<Date> alarmDateTimes = new ArrayList<Date>();
         alarmDateTimes.add(date);
 
-        saveAlarmTimes(alarmDateTimes);
+        //saveAlarmTimes(alarmDateTimes);
 
         String retrievedTimes = sharedPreferences.getString(SharedPreferencesHelper.USER_ALARMS, "");
 
