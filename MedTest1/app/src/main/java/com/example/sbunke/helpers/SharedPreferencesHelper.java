@@ -24,6 +24,12 @@ public class SharedPreferencesHelper {
         this.sharedPreferences = sharedPreferences;
     }
 
+    public void clearUserAlarms() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SharedPreferencesHelper.USER_ALARMS, "");
+        editor.commit();
+    }
+
     public List<Date> getAlarmTimesFromPreferences() {
         Date date = new Date();
         String info = date.toString();
@@ -42,7 +48,15 @@ public class SharedPreferencesHelper {
 
         for(String item : splitString){
             try {
-                Date parsedDate = formatter.parse(item);
+
+                Date parsedDate = new Date();
+                String[] pieces = item.split(":");
+                int hours = Integer.parseInt(pieces[0]);
+                int minutes = Integer.parseInt(pieces[1]);
+                parsedDate.setHours(hours);
+                parsedDate.setMinutes(minutes);
+
+                //Date parsedDate = formatter.parse(item);
                 retrievedAlarms.add(parsedDate);
 
             }
@@ -64,7 +78,8 @@ public class SharedPreferencesHelper {
 
         String times = "";
         for (Date date : alarmTimes) {
-            times += formatter.format(date) + "|";
+            times += date.getHours() + ":" + date.getMinutes() + "|";
+            //times += formatter.format(date) + "|";
             //times += date.toString() + "|";
         }
 

@@ -41,6 +41,7 @@ public class PatientCheckInAlarmsListActivity extends Activity {
 
         sharedPreferences = getPreferences(Activity.MODE_PRIVATE);
         helper = new SharedPreferencesHelper(sharedPreferences);
+        //helper.clearUserAlarms();
 
         this.activity = this;
 
@@ -82,14 +83,32 @@ public class PatientCheckInAlarmsListActivity extends Activity {
 
         int[] numbers = {8,12,16,20};
 
-        List<Date> dates = new ArrayList<Date>();
-        for (int item : numbers){
-            Date newDate = new Date();
-            newDate.setHours(item);
-            newDate.setMinutes(0);
-            dates.add(newDate);
-            //dates.add();
+
+        //if there are fewer than number.length then add the difference to the list
+        /*
+        int diff = numbers.length - alarmDateTimes.size();
+        if (diff > 0) {
+            for (int i = 0; i < diff; i++) {
+                Date newDate = new Date();
+                newDate.setHours(numbers[i]);
+                alarmDateTimes.add(newDate);
+            }
         }
+        */
+
+
+        List<Date> dates = new ArrayList<Date>();
+        /*
+        if (alarmDateTimes.size() == 0) {
+            for (int item : numbers){
+                Date newDate = new Date();
+                newDate.setHours(item);
+                newDate.setMinutes(0);
+                dates.add(newDate);
+                //dates.add();
+            }
+        }
+        */
 
         for (Date item : alarmDateTimes) {
             dates.add(item);
