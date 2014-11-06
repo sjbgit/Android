@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.sbunke.activities.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -22,13 +24,17 @@ import java.util.List;
  */
 public class PatientAlarmTimePickerArrayAdapter extends ArrayAdapter<Date> {
 
+    public static SimpleDateFormat formatter = new SimpleDateFormat("HH:mm a");
     private final Activity context;
     private List<Date> dates; // = new ArrayList<Patient>();
+    private ArrayAdapter adapterClass;
 
     public PatientAlarmTimePickerArrayAdapter(Activity context, List<Date> dates){
         super(context, R.layout.patient_check_in_alarm_timepicker_dialog_row_layout, dates);
         this.context = context;
         this.dates = dates;
+
+        this.adapterClass = this;
 
     }
 
@@ -98,6 +104,10 @@ public class PatientAlarmTimePickerArrayAdapter extends ArrayAdapter<Date> {
                         Toast.makeText(context,
                                 "Selected hour " + selectedHour + " selected minute " + selectedMinute ,
                                 Toast.LENGTH_SHORT).show();
+
+                        adapterClass.notifyDataSetChanged();
+
+
                     }
                 }, dates.get(pos).getHours(), dates.get(pos).getMinutes(), true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -108,7 +118,7 @@ public class PatientAlarmTimePickerArrayAdapter extends ArrayAdapter<Date> {
         });
 
         Date date = dates.get(position);
-        viewContainer.tvAlarmTime.setText(date.getHours() + ":" + date.getMinutes());
+        viewContainer.tvAlarmTime.setText(formatter.format(date)); //date.getHours() + ":" + date.getMinutes());
 
         //---customize the content of each row based on position---
                 //viewContainer.timePicker.setCurrentHour(dates.get(position).getHours()); //[position]);

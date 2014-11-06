@@ -80,7 +80,7 @@ public class PatientCheckInArrayAdapter extends ArrayAdapter<PrescriptionCheckIn
         } else {
 
             //---view was previously created; can recycle---
-            Log.d("CustomArrayAdapter", "Recycling");
+            Log.d("PatientArrayAdapter", "Recycling");
             //---retrieve the previously assigned tag to get
             // a reference to all the views; bypass the findViewByID() process,
             // which is computationally expensive---
