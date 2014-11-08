@@ -60,6 +60,8 @@ public class PatientCheckInAlarmsListActivity extends Activity {
               //create string and save in preferences
 
                 helper.saveAlarmTimes(activity.dates);
+
+                //TODO: CLEAR OUT AND SET ALARMS
             }
         });
 
