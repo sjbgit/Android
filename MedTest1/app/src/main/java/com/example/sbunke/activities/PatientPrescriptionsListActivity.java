@@ -1,13 +1,18 @@
 package com.example.sbunke.activities;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sbunke.activities.R;
@@ -26,6 +31,7 @@ public class PatientPrescriptionsListActivity extends Activity {
     private PatientPrescriptionsArrayAdapter adapter;// = new PatientArrayAdapter(this, patients);
     private PatientRepository repository; // = new PhysicianRepository();
     private long ID = -999;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +44,60 @@ public class PatientPrescriptionsListActivity extends Activity {
         adapter = new PatientPrescriptionsArrayAdapter(this, prescriptions);
         initializeList();
 
+        this.context = this;
+
         Integer i = 1;
 
+        initializeButtons();
+
         //PendingIntent.getService(this, 1, i, 0);
+    }
+
+    private void initializeButtons() {
+        ((Button)findViewById(R.id.btnAddPrescription)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(context);
+                // Include dialog.xml file
+                dialog.setContentView(R.layout.new_prescription_dialog_layout);
+                // Set dialog title
+                dialog.setTitle("Add Prescription");
+
+                // set values for custom dialog components - text, image and button
+
+                final TextView medName = (TextView) dialog.findViewById(R.id.etMedicationName);
+                final TextView medDosage = (TextView) dialog.findViewById(R.id.etDosage);
+
+                //text.setText("Custom dialog Android example.");
+                //ImageView image = (ImageView) dialog.findViewById(R.id.imageDialog);
+                //image.setImageResource(R.drawable.image0);
+
+                dialog.show();
+
+                Button declineButton = (Button) dialog.findViewById(R.id.btnCancelAddPrescription);
+                // if decline button is clicked, close the custom dialog
+                declineButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Close dialog
+                        dialog.dismiss();
+                    }
+                });
+
+                Button addButton = (Button) dialog.findViewById(R.id.btnAddPrescription);
+                // if decline button is clicked, close the custom dialog
+                addButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Prescription p = new Prescription(medName.getText().toString(), medDosage.getText().toString());
+                        prescriptions.add(p);
+                        adapter.notifyDataSetChanged();
+                        // Close dialog
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
     }
 
 
