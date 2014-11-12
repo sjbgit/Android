@@ -39,7 +39,8 @@ public class PatientCheckInAlarmsListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_check_in_alarms_list);
 
-        sharedPreferences = getPreferences(Activity.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(SharedPreferencesHelper.USER_ALARMS, Activity.MODE_PRIVATE);
+        //sharedPreferences = getPreferences(Activity.MODE_PRIVATE);
         helper = new SharedPreferencesHelper(sharedPreferences);
         //helper.clearUserAlarms();
 
@@ -54,6 +55,10 @@ public class PatientCheckInAlarmsListActivity extends Activity {
         initializeButtons();
     }
 
+    private void saveAlarms() {
+
+    }
+
     private void initializeButtons() {
         ((Button)findViewById(R.id.btnSaveAlarmChanges)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -62,6 +67,9 @@ public class PatientCheckInAlarmsListActivity extends Activity {
                 helper.saveAlarmTimes(activity.dates);
 
                 //TODO: CLEAR OUT AND SET ALARMS
+                Toast.makeText(activity,
+                        "Alarms Saved",
+                        Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -23,20 +24,23 @@ public class PatientAlarmArrayAdapter extends ArrayAdapter<Date> {
 
     private final Activity context;
     private List<Date> dates; // = new ArrayList<Patient>();
+    private PatientAlarmArrayAdapter patientAlarmArrayAdapter;
 
     public PatientAlarmArrayAdapter(Activity context, List<Date> dates){
         super(context, R.layout.patient_check_in_alarm_row_layout, dates);
         this.context = context;
         this.dates = dates;
+        this.patientAlarmArrayAdapter = this;
 
     }
 
     static class ViewContainer {
         public TimePicker timePicker;
+        public Button deleteButton;
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public View getView(final int position, View view, ViewGroup parent) {
         ViewContainer viewContainer;
         View rowView = view;
 
@@ -56,6 +60,16 @@ public class PatientAlarmArrayAdapter extends ArrayAdapter<Date> {
             //---get the references to all the views in the row---
             viewContainer.timePicker = (TimePicker)
                     rowView.findViewById(R.id.tpAlarmTimePicker);
+
+            viewContainer.deleteButton = (Button)rowView.findViewById(R.id.btnDeleteAlarm);
+
+            viewContainer.deleteButton.setOnClickListener(new View.OnClickListener() {
+                                                              public void onClick(View v) {
+                                                                    dates.remove(position);
+                                                                  patientAlarmArrayAdapter.notifyDataSetChanged();
+                                                              }
+                                                          });
+
 
             //---assign the view container to the rowView---
             rowView.setTag(viewContainer);

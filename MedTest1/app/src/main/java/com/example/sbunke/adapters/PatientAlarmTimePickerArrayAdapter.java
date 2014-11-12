@@ -28,6 +28,7 @@ public class PatientAlarmTimePickerArrayAdapter extends ArrayAdapter<Date> {
     private final Activity context;
     private List<Date> dates; // = new ArrayList<Patient>();
     private ArrayAdapter adapterClass;
+    private final PatientAlarmTimePickerArrayAdapter patientAlarmTimePickerArrayAdapter;
 
     public PatientAlarmTimePickerArrayAdapter(Activity context, List<Date> dates){
         super(context, R.layout.patient_check_in_alarm_timepicker_dialog_row_layout, dates);
@@ -35,6 +36,7 @@ public class PatientAlarmTimePickerArrayAdapter extends ArrayAdapter<Date> {
         this.dates = dates;
 
         this.adapterClass = this;
+        this.patientAlarmTimePickerArrayAdapter = this;
 
     }
 
@@ -49,6 +51,7 @@ public class PatientAlarmTimePickerArrayAdapter extends ArrayAdapter<Date> {
     public View getView(int position, View view, ViewGroup parent) {
         ViewContainer viewContainer;
         View rowView = view;
+        final int passedPosition = position;
 
         //---print the index of the row to examine---
         Log.d("PatientAlarmArrayAdapter", String.valueOf(position));
@@ -121,6 +124,15 @@ public class PatientAlarmTimePickerArrayAdapter extends ArrayAdapter<Date> {
             }
 
         });
+
+        viewContainer.btnDeleteTime = (Button)rowView.findViewById(R.id.btnDeleteAlarm);
+        viewContainer.btnDeleteTime.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dates.remove(passedPosition);
+                patientAlarmTimePickerArrayAdapter.notifyDataSetChanged();
+            }
+        });
+
 
         Date date = dates.get(position);
         viewContainer.tvAlarmTime.setText(formatter.format(date)); //date.getHours() + ":" + date.getMinutes());
