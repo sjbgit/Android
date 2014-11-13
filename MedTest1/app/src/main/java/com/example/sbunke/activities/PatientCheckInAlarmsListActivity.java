@@ -124,6 +124,9 @@ public class PatientCheckInAlarmsListActivity extends Activity {
         int[] numbers = {8,12,16,20};
 
 
+        //add the number of times necessary
+
+
         //if there are fewer than number.length then add the difference to the list
         /*
         int diff = numbers.length - alarmDateTimes.size();

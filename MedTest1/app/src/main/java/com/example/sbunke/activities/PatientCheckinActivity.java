@@ -3,13 +3,20 @@ package com.example.sbunke.activities;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -24,7 +31,11 @@ import com.example.sbunke.repositories.PatientRepository;
 import com.example.sbunke.repositories.PhysicianRepository;
 import com.example.sbunke.viewmodels.PrescriptionCheckInViewModel;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PatientCheckInActivity extends Activity {
@@ -37,6 +48,10 @@ public class PatientCheckInActivity extends Activity {
     private long ID = -999;//THIS WILL COME FROM THE PASSED IN INTENT
     //private LoadListTask task;
     private Context context;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    ImageView imageView;
+    String mCurrentPhotoPath;
+    static final int REQUEST_TAKE_PHOTO = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +67,98 @@ public class PatientCheckInActivity extends Activity {
         initializeList();
 
         setRadioButtonListeners();
+        bindPictureCaptureButton();
+        imageView = (ImageView)findViewById(R.id.ivCheckInPic);
 
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+        return image;
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+                Toast.makeText(context,
+                        "Error Creating Image",
+                        Toast.LENGTH_SHORT).show();
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        Uri.fromFile(photoFile));
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            }
+        }
+        else {
+            Toast.makeText(context,
+                    "No Camera Activity",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void bindPictureCaptureButton() {
+        //btnTakePictureForCheckIn
+        ((Button)findViewById(R.id.btnTakePictureForCheckIn)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                dispatchTakePictureIntent();
+                /*
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                }
+                */
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+
+            Integer x = 100;
+            Toast.makeText(context,
+                    "Image Successfully Created - " + mCurrentPhotoPath,
+                    Toast.LENGTH_SHORT).show();
+
+        }
+
+        //GET SMALL IMAGE
+        /*
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+            imageView.setImageBitmap(imageBitmap);
+        }
+        else {
+            Toast.makeText(context,
+                    "Image Not Captured",
+                    Toast.LENGTH_SHORT).show();
+        }
+        */
     }
 
     private void setRadioButtonListeners() {

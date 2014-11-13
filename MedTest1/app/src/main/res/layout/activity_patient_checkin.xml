@@ -185,9 +185,22 @@ android:id="@+id/radioGroup">
 
 
 
+
     </RadioGroup>
 
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Take Picture For Check-In"
+            android:id="@+id/btnTakePictureForCheckIn"></Button>
+        <ImageView
+            android:id="@+id/ivCheckInPic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        </LinearLayout>
 
     <ListView
         android:layout_width="wrap_content"
@@ -195,4 +208,9 @@ android:id="@+id/radioGroup">
         android:id="@+id/lvPatientCheckInPrescriptionList"
 
         android:layout_alignParentStart="true" />
+
+
+
+
+
 </LinearLayout>
