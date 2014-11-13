@@ -2,6 +2,7 @@ package com.example.sbunke.activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -52,6 +53,8 @@ public class PatientCheckInActivity extends Activity {
     ImageView imageView;
     String mCurrentPhotoPath;
     static final int REQUEST_TAKE_PHOTO = 1;
+    final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1;
+    Uri imageUri = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +74,71 @@ public class PatientCheckInActivity extends Activity {
         imageView = (ImageView)findViewById(R.id.ivCheckInPic);
 
     }
+
+    private void capturePic() {
+        // Define the file-name to save photo taken by Camera activity
+
+        String fileName = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        //String fileName = "Camera_Example.jpg";
+
+        // Create parameters for Intent with filename
+
+        ContentValues values = new ContentValues();
+
+        values.put(MediaStore.Images.Media.TITLE, fileName);
+
+        values.put(MediaStore.Images.Media.DESCRIPTION,"Image capture by camera");
+
+        // imageUri is the current activity attribute, define and save it for later usage
+
+        imageUri = getContentResolver().insert(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+
+        /**** EXTERNAL_CONTENT_URI : style URI for the "primary" external storage volume. ****/
+
+
+        // Standard Intent action that can be sent to have the camera
+        // application capture an image and return it.
+
+        Intent intent = new Intent( MediaStore.ACTION_IMAGE_CAPTURE );
+
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+
+        intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+
+        startActivityForResult( intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult( int requestCode, int resultCode, Intent data)
+    {
+        if ( requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+
+            if ( resultCode == RESULT_OK) {
+
+                Toast.makeText(this, " Picture was taken successfully", Toast.LENGTH_SHORT).show();
+                /*********** Load Captured Image And Data Start ****************/
+
+                //String imageId = convertImageUriToFile( imageUri,CameraActivity);
+
+
+                //  Create and excecute AsyncTask to load capture image
+
+                //new LoadImagesFromSDCard().execute(""+imageId);
+
+                /*********** Load Captured Image And Data End ****************/
+
+
+            } else if ( resultCode == RESULT_CANCELED) {
+
+                Toast.makeText(this, " Picture was not taken ", Toast.LENGTH_SHORT).show();
+            } else {
+
+                Toast.makeText(this, " Picture was not taken ", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 
     private File createImageFile() throws IOException {
         // Create an image file name
@@ -122,7 +190,8 @@ public class PatientCheckInActivity extends Activity {
         ((Button)findViewById(R.id.btnTakePictureForCheckIn)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                dispatchTakePictureIntent();
+                capturePic();
+                //dispatchTakePictureIntent();
                 /*
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -133,6 +202,7 @@ public class PatientCheckInActivity extends Activity {
         });
     }
 
+    /*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -159,7 +229,8 @@ public class PatientCheckInActivity extends Activity {
                     Toast.LENGTH_SHORT).show();
         }
         */
-    }
+    //}
+
 
     private void setRadioButtonListeners() {
 
