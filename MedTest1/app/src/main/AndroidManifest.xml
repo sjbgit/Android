@@ -46,7 +46,7 @@
             android:label="@string/title_activity_check_in_alarms" >
         </activity>
         <activity
-            android:name=".PatientCheckInActivity"
+            android:name=".PatientCheckInActivity" android:screenOrientation="portrait"
             android:label="@string/title_activity_patient_checkin" >
         </activity>
         <activity
