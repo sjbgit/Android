@@ -5,19 +5,44 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.example.sbunke.activities.R;
+import com.example.sbunke.adapters.PhysicianCheckInArrayAdapter;
+import com.example.sbunke.models.Patient;
+import com.example.sbunke.repositories.PatientRepository;
+import com.example.sbunke.viewmodels.PatientCheckInViewModel;
 import com.example.sbunke.views.GraphView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PatientCheckInHistoryActivity extends Activity {
 
     float values[]={300,400,300};
+    PhysicianCheckInArrayAdapter physicianCheckInArrayAdapter;
+    List<PatientCheckInViewModel> checkIns;
+
+    long patientId = -1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_check_in_history);
-        setGraph();
+        //setGraph();
+        bindList(patientId);
+    }
+
+    private void bindList(long patientId) {
+        PatientRepository repo = new PatientRepository();
+        checkIns = repo.getAllCheckInsForPatient(patientId);
+        physicianCheckInArrayAdapter = new PhysicianCheckInArrayAdapter(this, checkIns);
+        //physicianCheckInArrayAdapter.notifyDataSetChanged();
+
+        ListView patientListView = (ListView)findViewById(R.id.lvPhysicianCheckIns);
+        patientListView.setAdapter(physicianCheckInArrayAdapter);
+
     }
 
     private void setGraph() {

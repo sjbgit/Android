@@ -2,8 +2,10 @@ package com.example.sbunke.repositories;
 
 import com.example.sbunke.models.Patient;
 import com.example.sbunke.models.Prescription;
+import com.example.sbunke.viewmodels.PatientCheckInViewModel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,5 +28,20 @@ public class PatientRepository {
 */
         return prescriptions;
 
+    }
+
+    public List<PatientCheckInViewModel> getAllCheckInsForPatient(long id) {
+        List<PatientCheckInViewModel> checkIns = new ArrayList<PatientCheckInViewModel>();
+        checkIns.add(new PatientCheckInViewModel(new Date(), "main 1", "secondary 1"));
+        checkIns.add(new PatientCheckInViewModel(new Date(), "main 2", "secondary 2"));
+        checkIns.add(new PatientCheckInViewModel(new Date(), "main 3", "secondary 3"));
+        checkIns.add(new PatientCheckInViewModel(new Date(), "main 4", "secondary 4"));
+        checkIns.add(new PatientCheckInViewModel(new Date(), "main 5", "secondary 5"));
+        checkIns.add(new PatientCheckInViewModel(new Date(), "main 6", "secondary 6"));
+        checkIns.add(new PatientCheckInViewModel(new Date(), "main 7", "secondary 7"));
+        checkIns.add(new PatientCheckInViewModel(new Date(), "main 8", "secondary 8"));
+
+
+        return checkIns;
     }
 }
