@@ -67,6 +67,8 @@ public class PatientPrescriptionsListActivity extends Activity {
                 final TextView medName = (TextView) dialog.findViewById(R.id.etMedicationName);
                 final TextView medDosage = (TextView) dialog.findViewById(R.id.etDosage);
 
+
+
                 //text.setText("Custom dialog Android example.");
                 //ImageView image = (ImageView) dialog.findViewById(R.id.imageDialog);
                 //image.setImageResource(R.drawable.image0);

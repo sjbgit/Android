@@ -1,14 +1,19 @@
 package com.example.sbunke.adapters;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.sbunke.activities.PatientMainActivity;
 import com.example.sbunke.activities.R;
 import com.example.sbunke.models.Patient;
 import com.example.sbunke.models.Prescription;
@@ -25,12 +30,14 @@ public class PatientPrescriptionsArrayAdapter extends ArrayAdapter<Prescription>
         private final Activity context;
         private List<Prescription> prescriptions; // = new ArrayList<Patient>();
         //protected final Integer[] imageIds;
+        private PatientPrescriptionsArrayAdapter adapter;
 
         public PatientPrescriptionsArrayAdapter(
                 Activity context, List<Prescription> prescriptions) {
             super(context, R.layout.patient_prescription_row_layout, prescriptions);
             this.context = context;
             this.prescriptions = prescriptions;
+            adapter = this;
             //this.imageIds = imageIds;
         }
 
@@ -38,10 +45,12 @@ public class PatientPrescriptionsArrayAdapter extends ArrayAdapter<Prescription>
             //public ImageView imageView;
             public TextView tvName;
             public TextView tvDosage;
+            public Button btnEdit;
+            public Button btnDelete;
         }
 
         @Override
-        public View getView(int position, View view, ViewGroup parent) {
+        public View getView(final int position, View view, ViewGroup parent) {
             ViewContainer viewContainer;
             View rowView = view;
 
@@ -63,6 +72,11 @@ public class PatientPrescriptionsArrayAdapter extends ArrayAdapter<Prescription>
                         rowView.findViewById(R.id.tvMedicationRowName);
                 viewContainer.tvDosage = (TextView)
                         rowView.findViewById(R.id.tvMedicationRowDosage);
+                viewContainer.btnEdit = (Button)
+                        rowView.findViewById(R.id.btnEditPrescription);
+                viewContainer.btnDelete = (Button)
+                        rowView.findViewById(R.id.btnDeletePrescription);
+
 
 
                 //---assign the view container to the rowView---
@@ -77,9 +91,82 @@ public class PatientPrescriptionsArrayAdapter extends ArrayAdapter<Prescription>
                 viewContainer = (ViewContainer) rowView.getTag();
             }
 
+            final Prescription prescription = prescriptions.get(position);
+
             //---customize the content of each row based on position---
             viewContainer.tvName.setText(prescriptions.get(position).getName()); //[position]);
             viewContainer.tvDosage.setText(prescriptions.get(position).getDosage());
+
+            viewContainer.btnEdit.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Toast.makeText(context,
+                            "Edit Script",
+                            Toast.LENGTH_SHORT).show();
+
+                    final Dialog dialog = new Dialog(context);
+                    // Include dialog.xml file
+                    dialog.setContentView(R.layout.new_prescription_dialog_layout);
+                    // Set dialog title
+                    dialog.setTitle("Edit Prescription");
+
+                    // set values for custom dialog components - text, image and button
+
+                    final TextView medName = (TextView) dialog.findViewById(R.id.etMedicationName);
+                    final TextView medDosage = (TextView) dialog.findViewById(R.id.etDosage);
+                    medName.setText(prescription.getName());
+                    medDosage.setText(prescription.getDosage());
+
+                    final Button updateButton = (Button)dialog.findViewById(R.id.btnAddPrescription);
+                    updateButton.setText("Update");
+
+                    //text.setText("Custom dialog Android example.");
+                    //ImageView image = (ImageView) dialog.findViewById(R.id.imageDialog);
+                    //image.setImageResource(R.drawable.image0);
+
+                    dialog.show();
+
+                    Button declineButton = (Button) dialog.findViewById(R.id.btnCancelAddPrescription);
+                    // if decline button is clicked, close the custom dialog
+                    declineButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Close dialog
+                            dialog.dismiss();
+                        }
+                    });
+
+                    Button addButton = (Button) dialog.findViewById(R.id.btnAddPrescription);
+                    // if decline button is clicked, close the custom dialog
+                    addButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            prescription.setName(medName.getText().toString());
+                            prescription.setDosage(medDosage.getText().toString());
+
+                            //Prescription p = new Prescription(medName.getText().toString(), medDosage.getText().toString());
+                            //prescriptions.add(p);
+                            adapter.notifyDataSetChanged();
+                            // Close dialog
+                            dialog.dismiss();
+                        }
+                    });
+
+                }
+            });
+
+            viewContainer.btnDelete.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+
+                    prescriptions.remove(position);
+                    adapter.notifyDataSetChanged();
+
+                    Toast.makeText(context,
+                            "Delete Script",
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+
             //viewContainer.imageView.setImageResource(imageIds[position]);
             return rowView;
         }

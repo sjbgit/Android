@@ -126,6 +126,9 @@ public class PhysicianPatientListActivity extends Activity {
         switch(item.getItemId()) {
             case R.id.menu_physician_patient_checkins:
                 //Perform delete actions
+                Intent patientHistoryIntent =
+                        new Intent(context, PatientCheckInHistoryActivity.class);
+                context.startActivity(patientHistoryIntent);
                 break;
             case R.id.menu_physician_patient_prescriptions:
                 Intent launchIntent =
