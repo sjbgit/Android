@@ -30,7 +30,7 @@ public class PatientCheckInHistoryActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_check_in_history);
-        //setGraph();
+        setGraph();
         bindList(patientId);
     }
 

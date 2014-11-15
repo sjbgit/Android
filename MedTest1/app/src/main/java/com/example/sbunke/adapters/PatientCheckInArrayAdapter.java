@@ -1,21 +1,31 @@
 package com.example.sbunke.adapters;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.sbunke.activities.PickDateTimeActivity;
 import com.example.sbunke.activities.R;
+import com.example.sbunke.helpers.DateAndTimePickerHelper;
+import com.example.sbunke.helpers.SharedPreferencesHelper;
 import com.example.sbunke.models.Patient;
 import com.example.sbunke.viewmodels.PrescriptionCheckInViewModel;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,11 +37,14 @@ public class PatientCheckInArrayAdapter extends ArrayAdapter<PrescriptionCheckIn
     private List<PrescriptionCheckInViewModel> prescriptionCheckInViewModels; // = new ArrayList<Patient>();
     //protected final Integer[] imageIds;
 
+    private PatientCheckInArrayAdapter patientCheckInArrayAdapter;
+
     public PatientCheckInArrayAdapter(
             Activity context, List<PrescriptionCheckInViewModel> prescriptionCheckInViewModels) {
         super(context, R.layout.patient_checkin_medication_row_layout, prescriptionCheckInViewModels);
         this.context = context;
         this.prescriptionCheckInViewModels = prescriptionCheckInViewModels;
+        patientCheckInArrayAdapter = this;
         //this.imageIds = imageIds;
     }
 
@@ -41,6 +54,7 @@ public class PatientCheckInArrayAdapter extends ArrayAdapter<PrescriptionCheckIn
         public TextView tvPrescriptionTakenQuestion;
         public RadioButton rbMedicationWasTaken;
         public RadioGroup rbgMedicationTaken;
+        public TextView tvPrescriptionTakenDate;
     }
 
     @Override
@@ -50,6 +64,8 @@ public class PatientCheckInArrayAdapter extends ArrayAdapter<PrescriptionCheckIn
 
         //---print the index of the row to examine---
         Log.d("PatientArrayAdapter", String.valueOf(position));
+
+        final int pos = position;
 
         //---if the row is displayed for the first time---
         if (rowView == null) {
@@ -63,7 +79,10 @@ public class PatientCheckInArrayAdapter extends ArrayAdapter<PrescriptionCheckIn
 
             //---get the references to all the views in the row---
             viewContainer.tvPrescriptionTakenQuestion = (TextView)
-                    rowView.findViewById(R.id.tvPrescriptionTakenQuestion);
+                    rowView.findViewById(R.id.tvPrescriptionTakenQuestion);//tvPrescriptionTakenDate
+
+            viewContainer.tvPrescriptionTakenDate = (TextView)
+                    rowView.findViewById(R.id.tvPrescriptionTakenDate);
 
             viewContainer.rbMedicationWasTaken = (RadioButton)rowView.findViewById(R.id.rbMedicationWasTaken);
 
@@ -94,6 +113,17 @@ public class PatientCheckInArrayAdapter extends ArrayAdapter<PrescriptionCheckIn
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (viewContainer.rbMedicationWasTaken.isChecked()){
+
+                    promptForDateAndTime("When did you take your " + prescriptionCheckInViewModels.get(pos).getPrescriptionName() + "?", prescriptionCheckInViewModels.get(pos), viewContainer.tvPrescriptionTakenDate);
+                    /*
+                    Intent launchIntent =
+                            new Intent(context, PickDateTimeActivity.class);
+                    launchIntent.putExtra(PickDateTimeActivity.MESSAGE_KEY, "When did you take your " + prescriptionCheckInViewModels.get(pos).getPrescriptionName());
+                    context.startActivityForResult(launchIntent, REQUEST_CODE);
+                    */
+
+                    patientCheckInArrayAdapter.notifyDataSetChanged();
+
                     Toast.makeText(context,
                             "Medication Taken",
                             Toast.LENGTH_SHORT).show();
@@ -108,6 +138,90 @@ public class PatientCheckInArrayAdapter extends ArrayAdapter<PrescriptionCheckIn
         //viewContainer.lastNameTv.setText(prescriptionCheckInViewModels.get(position).getLastName() + " ...Some descriptions here...");
         //viewContainer.imageView.setImageResource(imageIds[position]);
         return rowView;
+    }
+
+    private Date promptForDateAndTime(String message, PrescriptionCheckInViewModel viewModel, TextView tv) {
+        final Dialog dialog = new Dialog(context);
+        // Include dialog.xml file
+        dialog.setContentView(R.layout.enter_checkin_date_and_time_layout);
+        // Set dialog title
+        dialog.setTitle("Enter Date and Time");
+
+        final TextView tv1 = tv;
+
+        // set values for custom dialog components - text, image and button
+
+        final PrescriptionCheckInViewModel vm = viewModel;
+
+        final TimePicker timePicker = (TimePicker) dialog.findViewById(R.id.tpTimePicker);
+        final DatePicker datePicker = (DatePicker) dialog.findViewById(R.id.dpDatePicker);
+        final Date now = new Date();
+        timePicker.setCurrentHour(now.getHours());
+        timePicker.setCurrentMinute(now.getMinutes());
+        datePicker.setMaxDate(now.getTime());
+
+        Calendar c = Calendar.getInstance();
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+        int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+        final TextView tvMessage = (TextView)dialog.findViewById(R.id.tvPrescriptionTakenMessage);
+        tvMessage.setText(message);
+
+
+        //medName.setText(prescription.getName());
+        //medDosage.setText(prescription.getDosage());
+
+        //final Button updateButton = (Button)dialog.findViewById(R.id.btnAddPrescription);
+        //updateButton.setText("Update");
+
+        //text.setText("Custom dialog Android example.");
+        //ImageView image = (ImageView) dialog.findViewById(R.id.imageDialog);
+        //image.setImageResource(R.drawable.image0);
+
+        dialog.show();
+
+        /*
+        Button declineButton = (Button) dialog.findViewById(R.id.btnCancelAddPrescription);
+        // if decline button is clicked, close the custom dialog
+        declineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Close dialog
+                dialog.dismiss();
+            }
+        });
+        */
+        Button addButton = (Button) dialog.findViewById(R.id.btnDateTimeSelected);
+        // if decline button is clicked, close the custom dialog
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                Date pickedDate = DateAndTimePickerHelper.getDateFromDatePickerAndTimePicker(datePicker, timePicker);
+                vm.setDateTaken(pickedDate);
+                tv1.setText(SharedPreferencesHelper.formatter.format(pickedDate));
+                Toast.makeText(context,
+                        SharedPreferencesHelper.formatter.format(pickedDate),
+                        Toast.LENGTH_SHORT).show();
+
+                //prescription.setName(medName.getText().toString());
+                //prescription.setDosage(medDosage.getText().toString());
+
+                //Prescription p = new Prescription(medName.getText().toString(), medDosage.getText().toString());
+                //prescriptions.add(p);
+                //adapter.notifyDataSetChanged();
+                // Close dialog
+                dialog.dismiss();
+            }
+        });
+
+        //TODO: FIX THIS
+        return now;
+
     }
 
 }

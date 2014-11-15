@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="test"
+        android:id="@+id/tvPrescriptionTakenMessage" />
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tpTimePicker"
+        android:layout_toEndOf="@+id/tvDateTimePickMessage"
+        android:layout_toStartOf="@+id/tpTimePicker"
+        android:layout_below="@+id/dpDatePicker"
+        android:layout_alignStart="@+id/dpDatePicker" />
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dpDatePicker"
+        android:layout_toEndOf="@+id/tvDateTimePickMessage"
+        android:calendarViewShown="false"
+        android:layout_below="@+id/dpDatePicker"
+        android:layout_alignStart="@+id/dpDatePicker" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:id="@+id/btnDateTimeSelected"
+        android:layout_below="@+id/tpTimePicker"
+        android:layout_alignStart="@+id/tpTimePicker"
+
+        android:layout_alignEnd="@+id/tpTimePicker" />
+
+</LinearLayout>

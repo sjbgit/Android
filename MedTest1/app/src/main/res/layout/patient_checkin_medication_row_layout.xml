@@ -16,7 +16,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Time taken: "
+
+        android:text="Date/Time taken: "
 
         android:id="@+id/tvPrescriptionTakenDate" />
 
@@ -51,6 +52,7 @@
                 android:layout_below="@+id/rbMedicationWasTaken"
                 android:layout_alignStart="@+id/rbMedicationWasTaken" />
         </RadioGroup>
+
 
         </LinearLayout>
 

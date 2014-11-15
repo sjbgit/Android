@@ -4,7 +4,10 @@
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -46,8 +49,9 @@
             android:label="@string/title_activity_check_in_alarms" >
         </activity>
         <activity
-            android:name=".PatientCheckInActivity" android:screenOrientation="portrait"
-            android:label="@string/title_activity_patient_checkin" >
+            android:name=".PatientCheckInActivity"
+            android:label="@string/title_activity_patient_checkin"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".PatientMedicationListActivity"
@@ -74,6 +78,10 @@
         <activity
             android:name=".PatientCheckInAlarmsListActivity"
             android:label="@string/title_activity_patient_check_in_alarms_list" >
+        </activity>
+        <activity
+            android:name=".PickDateTimeActivity"
+            android:label="@string/title_activity_pick_date_time" >
         </activity>
     </application>
 

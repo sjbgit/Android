@@ -32,5 +32,6 @@
     <string name="title_activity_patient_check_in_history">Check-In History</string>
     <string name="take_pain_medication_question">Did you take your pain medication?</string>
     <string name="title_activity_patient_check_in_alarms_list">Check-In Alarm Times</string>
+    <string name="title_activity_pick_date_time">PickDateTimeActivity</string>
 
 </resources>
