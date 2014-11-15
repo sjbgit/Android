@@ -5,6 +5,7 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by sbunke on 11/14/2014.
@@ -16,10 +17,15 @@ public class DateAndTimePickerHelper {
         int month = datePicker.getMonth();
         int year =  datePicker.getYear();
 
-        Date date = new Date();
-        date.setDate(day);
-        date.setMonth(month);
-        date.setYear(year);
+        Calendar cal = new GregorianCalendar(year, month, day);
+
+        //GregorianCalendar.getInstance();
+        //cal.set(year, month, day);
+
+        Date date = new Date(cal.getTimeInMillis()); // cal.getTime());
+        //date.setDate(day);
+        //date.setMonth(month);
+        //date.setYear(year);
 
         date.setHours(timePicker.getCurrentHour());
         date.setMinutes(timePicker.getCurrentMinute());

@@ -129,6 +129,9 @@ public class PatientCheckInArrayAdapter extends ArrayAdapter<PrescriptionCheckIn
                             Toast.LENGTH_SHORT).show();
                     //https://code.google.com/p/datetimepicker/source/browse/trunk/src/com/ptashek/widgets/datetimepicker/DateTimePicker.java
                 }
+                if (!viewContainer.rbMedicationWasTaken.isChecked()) {
+                    viewContainer.tvPrescriptionTakenDate.setText("");
+                }
             }
         });
 
@@ -159,6 +162,7 @@ public class PatientCheckInArrayAdapter extends ArrayAdapter<PrescriptionCheckIn
         timePicker.setCurrentHour(now.getHours());
         timePicker.setCurrentMinute(now.getMinutes());
         datePicker.setMaxDate(now.getTime());
+        //datePicker.set
 
         Calendar c = Calendar.getInstance();
         int mYear = c.get(Calendar.YEAR);
