@@ -26,6 +26,8 @@ import android.widget.Toast;
 import com.example.sbunke.activities.R;
 import com.example.sbunke.adapters.PatientArrayAdapter;
 import com.example.sbunke.adapters.PatientCheckInArrayAdapter;
+import com.example.sbunke.models.CheckIn;
+import com.example.sbunke.models.Login;
 import com.example.sbunke.models.Patient;
 import com.example.sbunke.models.Prescription;
 import com.example.sbunke.repositories.PatientRepository;
@@ -55,6 +57,7 @@ public class PatientCheckInActivity extends Activity {
     static final int REQUEST_TAKE_PHOTO = 1;
     final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1;
     Uri imageUri = null;
+    CheckIn checkIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +74,26 @@ public class PatientCheckInActivity extends Activity {
 
         setRadioButtonListeners();
         bindPictureCaptureButton();
+        bindSaveCheckInButton();
         imageView = (ImageView)findViewById(R.id.ivCheckInPic);
 
+        checkIn = new CheckIn(Login.Patient);
+
+    }
+
+    private void bindSaveCheckInButton() {
+        //btnSaveCheckIn
+        ((Button)findViewById(R.id.btnSaveCheckIn)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(context, "Check-In Saved", Toast.LENGTH_SHORT).show();
+                //(new PatientRepository()).SaveCheckIn();
+
+                checkIn.setPrescriptionCheckInViewModelCollection(prescriptionCheckInViewModels);
+
+                Integer x = 1;
+
+            }
+        });
     }
 
     private void capturePic() {
@@ -233,6 +254,81 @@ public class PatientCheckInActivity extends Activity {
 
 
     private void setRadioButtonListeners() {
+
+        final RadioGroup rbgPainGroup = ((RadioGroup)findViewById(R.id.rbgPainGroup));
+        final RadioButton rbWellControlled = (RadioButton)findViewById(R.id.rbWellControlled);
+        final RadioButton rbModerate = (RadioButton)findViewById(R.id.rbModerate);
+        final RadioButton rbSevere = (RadioButton)findViewById(R.id.rbSevere);
+
+        rbgPainGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                String info = "";
+                if (rbWellControlled.isChecked()) {
+                    info = "Well Controlled";
+                    Toast.makeText(context,
+                            "Well Controlled",
+                            Toast.LENGTH_SHORT).show();
+                    //lvMedications.setVisibility(View.VISIBLE);
+                    //https://code.google.com/p/datetimepicker/source/browse/trunk/src/com/ptashek/widgets/datetimepicker/DateTimePicker.java
+                }
+
+                if(rbModerate.isChecked()) {
+                    info = "Moderate";
+                    Toast.makeText(context,
+                            "Moderate",
+                            Toast.LENGTH_SHORT).show();
+                    //lvMedications.setVisibility(View.INVISIBLE);
+                }
+
+                if(rbSevere.isChecked()) {
+                    info = "Severe";
+                    Toast.makeText(context,
+                            "Severe",
+                            Toast.LENGTH_SHORT).show();
+                    //lvMedications.setVisibility(View.INVISIBLE);
+                }
+                checkIn.setMouthPain(info);
+            }
+        });
+
+        final RadioGroup rbgEating = ((RadioGroup)findViewById(R.id.rbgEating));
+        final RadioButton rbStopEatingNo = (RadioButton)findViewById(R.id.rbStopEatingNo);
+        final RadioButton rbStopEatingSome = (RadioButton)findViewById(R.id.rbStopEatingSome);
+        final RadioButton rbStopEatingCannot = (RadioButton)findViewById(R.id.rbStopEatingCannot);
+
+        rbgEating.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                String info = "";
+                if (rbStopEatingNo.isChecked()) {
+                    info = "No";
+                    Toast.makeText(context,
+                            "No",
+                            Toast.LENGTH_SHORT).show();
+                    //lvMedications.setVisibility(View.VISIBLE);
+                    //https://code.google.com/p/datetimepicker/source/browse/trunk/src/com/ptashek/widgets/datetimepicker/DateTimePicker.java
+                }
+
+                if(rbStopEatingSome.isChecked()) {
+                    info = "Some";
+                    Toast.makeText(context,
+                            "Some",
+                            Toast.LENGTH_SHORT).show();
+                    //lvMedications.setVisibility(View.INVISIBLE);
+                }
+
+                if(rbStopEatingCannot.isChecked()) {
+                    info = "Can't Eat";
+                    Toast.makeText(context,
+                            "Can't Eat",
+                            Toast.LENGTH_SHORT).show();
+                    //lvMedications.setVisibility(View.INVISIBLE);
+                }
+
+                checkIn.setFoodConsumption(info);
+            }
+        });
 
 
 

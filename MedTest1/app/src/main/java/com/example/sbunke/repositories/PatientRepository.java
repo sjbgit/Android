@@ -13,6 +13,10 @@ import java.util.List;
  */
 public class PatientRepository {
 
+    public void SaveCheckIn(PatientCheckInViewModel checkInViewModel) {
+
+    }
+
     public List<Prescription> GetAllPrescriptionsForPatient(long id) {
         List<Prescription> prescriptions = new ArrayList<Prescription>();
         prescriptions.add(new Prescription("Lortab", "1000 mg"));

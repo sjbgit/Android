@@ -1,5 +1,8 @@
 package com.example.sbunke.models;
 
+import com.example.sbunke.viewmodels.PatientCheckInViewModel;
+import com.example.sbunke.viewmodels.PrescriptionCheckInViewModel;
+
 import java.util.Collection;
 import java.util.Date;
 
@@ -60,14 +63,17 @@ public class CheckIn {
         this.foodConsumption = foodConsumption;
     }
 
-    public Collection<MedicationTaken> getMedicationTakenCollection() {
-        return medicationTakenCollection;
+
+
+
+    public Collection<PrescriptionCheckInViewModel> getPrescriptionCheckInViewModelCollection() {
+        return prescriptionCheckInViewModelCollection;
     }
 
-    public void setMedicationTakenCollection(Collection<MedicationTaken> medicationTakenCollection) {
-        this.medicationTakenCollection = medicationTakenCollection;
+    public void setPrescriptionCheckInViewModelCollection(Collection<PrescriptionCheckInViewModel> prescriptionCheckInViewModelCollection) {
+        this.prescriptionCheckInViewModelCollection = prescriptionCheckInViewModelCollection;
     }
 
-    private Collection<MedicationTaken> medicationTakenCollection;
+    private Collection<PrescriptionCheckInViewModel> prescriptionCheckInViewModelCollection;
 
 }

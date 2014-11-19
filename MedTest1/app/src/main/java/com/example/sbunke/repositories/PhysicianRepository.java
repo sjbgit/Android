@@ -26,4 +26,11 @@ public class PhysicianRepository {
     }
 
 
+    public void GetAllCheckInsExceedingNotificationThresholds() {
+        //get all check-ins for the last 24 hours - pass in physician id - get back
+
+    }
+
+
+
 }
