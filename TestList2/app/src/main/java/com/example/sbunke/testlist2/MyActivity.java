@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -12,6 +14,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.InputStream;
 
 
 public class MyActivity extends Activity {
@@ -61,6 +70,47 @@ public class MyActivity extends Activity {
         }
     }
 
+    public static String GET(String url){
+        InputStream inputStream = null;
+        String result = "";
+        try {
+
+            // create HttpClient
+            HttpClient httpclient = new DefaultHttpClient();
+
+            // make GET request to the given URL
+            HttpResponse httpResponse = httpclient.execute(new HttpGet(url));
+
+            // receive response as inputStream
+            inputStream = httpResponse.getEntity().getContent();
+
+            // convert inputstream to string
+           // if(inputStream != null)
+                //result = convertInputStreamToString(inputStream);
+            //else
+             //   result = "Did not work!";
+
+        } catch (Exception e) {
+            Log.d("InputStream", e.getLocalizedMessage());
+        }
+
+        return result;
+    }
+
+    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+
+            return GET(urls[0]);
+        }
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(String result) {
+            Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
+            //etResponse.setText(result);
+        }
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +119,21 @@ public class MyActivity extends Activity {
                 this, android.R.layout.simple_list_item_1, presidents);
 
         ctx = this;
+
+        new HttpAsyncTask().execute("http://10.41.4.140:8080/patients/all"); //"http://10.41.4.140:3333/"); //"http://10.41.1.1:8080/patients/all"); //"http://hmkcode.com/examples/index.php");
+
+
+        HttpClient httpclient = new DefaultHttpClient();
+
+        try {
+            //HttpResponse httpResponse = httpclient.execute(new HttpGet("http://10.0.0.2:8080/patients/all"));
+        }
+        catch (Exception ex) {
+            Exception e = ex;
+        }
+
+        // make GET request to the given URL
+
 
         //---List View---
         /*

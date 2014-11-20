@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.sbunke.models.UserCredentials;
 import com.example.sbunke.models.UserType;
+import com.example.sbunke.repositories.UserLoginRepository;
 
 
 public class LoginActivity extends Activity {
@@ -108,6 +109,11 @@ public class LoginActivity extends Activity {
         String password = ((TextView)findViewById(R.id.tvPassword)).getText().toString();
 
         //validate and determine user type from repository
+        String result = (new UserLoginRepository()).ValidateCredentials(userName, password);
+
+
+
+
 
 
         saveUserCredentials(new UserCredentials(userName, password, UserType.INVALID));

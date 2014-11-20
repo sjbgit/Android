@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Collection;
 import java.util.Locale;
 
 import android.app.Activity;
@@ -127,7 +128,7 @@ public class MyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
 
-        new HttpAsyncTask().execute("http://192.168.0.1:3333");
+        //new HttpAsyncTask().execute("http://192.168.0.1:3333");
 
 
         //GET("http://192.168.0.1:3333");
@@ -143,17 +144,20 @@ public class MyActivity extends Activity {
 
 
 
-        /*
-        final RestApi restApi = new RestAdapter.Builder().setEndpoint("192.168.0.1").build().create(RestApi.class);
+
+        //http://10.41.4.140:8080/users
+        final UserSvcApi restApi = new RestAdapter.Builder().setEndpoint("http://10.41.4.140:8080").build().create(UserSvcApi.class);
 
         new AsyncTask<Void, Void, User>() {
 
             @Override
             protected User doInBackground(Void... voids) {
-                return restApi.getUser(1);
+                Collection<User> users = restApi.getUserList();
+
+                return new User();  //restApi.getUserList();
             }
         }.execute();
-
+/*
         restApi.addUser(new User(), new Callback<Response>() {
             @Override
             public void success(Response response, Response response2) {
