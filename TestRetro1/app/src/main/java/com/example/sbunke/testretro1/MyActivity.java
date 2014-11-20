@@ -12,6 +12,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -25,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +53,8 @@ public class MyActivity extends Activity {
      * {@link android.support.v13.app.FragmentStatePagerAdapter}.
      */
     SectionsPagerAdapter mSectionsPagerAdapter;
+
+    Context context;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -127,7 +131,17 @@ public class MyActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+        context = this;
 
+        /*
+        ((Button)findViewById(R.id.btnNewButton)).setOnClickListener(new View.OnClickListener() {
+                                                                     public void onClick(View v) {
+
+                                                                         Toast.makeText(context, "Check-In Saved", Toast.LENGTH_SHORT).show();
+
+                                                                     }
+                                                                 });
+*/
         //new HttpAsyncTask().execute("http://192.168.0.1:3333");
 
 
