@@ -2,6 +2,7 @@ package com.example.sbunke.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.example.sbunke.models.UserCredentials;
 import com.example.sbunke.models.UserType;
 import com.example.sbunke.repositories.UserLoginRepository;
+import com.example.sbunke.services.ServiceHelper;
 
 
 public class LoginActivity extends Activity {
@@ -34,6 +36,11 @@ public class LoginActivity extends Activity {
 
         ctx = this;
         handleButtons();
+
+        ServiceHelper helper = new ServiceHelper();
+        //helper.GetCredentials();
+        helper.GetPhysician(987655);
+
     }
 
     private void handleButtons() {
