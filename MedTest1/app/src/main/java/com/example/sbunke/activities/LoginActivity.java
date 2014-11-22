@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.example.sbunke.models.UserCredentials;
 import com.example.sbunke.models.UserType;
 import com.example.sbunke.repositories.UserLoginRepository;
-import com.example.sbunke.services.Credentials;
 import com.example.sbunke.services.ServiceHelper;
 
 
@@ -25,7 +24,6 @@ public class LoginActivity extends Activity {
     public static final String USER_NAME = "USER_NAME";
     public static final String USER_PASSWORD = "USER_PASSWORD";
     public static final String USER_TYPE = "USER_TYPE";
-    public static final String USER_ID = "USER_ID";
 
     private Activity ctx;
     private SharedPreferences sharedPreferences;
@@ -108,8 +106,7 @@ public class LoginActivity extends Activity {
     }
 
     private void handleLogin() {
-        //UserCredentials userCredentials = getUserCredentials();
-        //Credentials credentials = ServiceHelper.GetCredentialsSync(userCredentials.getUserName(), userCredentials.getPassword());
+        UserCredentials userCredentials = getUserCredentials();
 
         retrieveFromUiValidateAndStoreUserCredentials();
     }
@@ -119,15 +116,14 @@ public class LoginActivity extends Activity {
         String password = ((TextView)findViewById(R.id.tvPassword)).getText().toString();
 
         //validate and determine user type from repository
-        //String result = (new UserLoginRepository()).ValidateCredentials(userName, password);
-
-        Credentials credentials = ServiceHelper.GetCredentialsSync(userName, password);
+        String result = (new UserLoginRepository()).ValidateCredentials(userName, password);
 
 
 
-        saveUserCredentials(new UserCredentials(userName, password, credentials.getType()));
 
-        //saveUserCredentials(new UserCredentials(userName, password, UserType.INVALID));
+
+
+        saveUserCredentials(new UserCredentials(userName, password, UserType.INVALID));
 
     }
 
