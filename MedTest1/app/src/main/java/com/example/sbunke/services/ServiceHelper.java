@@ -14,13 +14,18 @@ import retrofit.RestAdapter;
  */
 public class ServiceHelper {
 
-    private final static String address = "http://10.41.4.140:8080";
+    public final static String ADDRESS = "http://10.41.4.140:8080";
+
+    public static Credentials GetCredentialsSync(String username, String password) {
+        final CredentialsSvcApi restApi = new RestAdapter.Builder().setEndpoint("http://10.41.4.140:8080").build().create(CredentialsSvcApi.class);
+        return restApi.getCredentials(username, password);
+    }
 
     public void GetCredentials() {
 
         final CredentialsSvcApi restApi = new RestAdapter.Builder().setEndpoint("http://10.41.4.140:8080").build().create(CredentialsSvcApi.class);
 
-        new AsyncTask<Void, Void, Credentials>() {
+        (new AsyncTask<Void, Void, Credentials>() {
 
             @Override
             protected Credentials doInBackground(Void... voids) {
@@ -28,7 +33,7 @@ public class ServiceHelper {
 
                 return creds;  //restApi.getUserList();
             }
-        }.execute();
+        }).execute();
 
     }
 
