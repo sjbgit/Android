@@ -13,9 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.sbunke.models.Login;
+import com.example.sbunke.models.Patient;
 import com.example.sbunke.models.UserCredentials;
 import com.example.sbunke.models.UserType;
 import com.example.sbunke.repositories.UserLoginRepository;
+import com.example.sbunke.services.Credentials;
 import com.example.sbunke.services.ServiceHelper;
 
 
@@ -37,9 +40,14 @@ public class LoginActivity extends Activity {
         ctx = this;
         handleButtons();
 
-        ServiceHelper helper = new ServiceHelper();
-        //helper.GetCredentials();
-        helper.GetPhysician(987655);
+        //ServiceHelper helper = new ServiceHelper();
+
+        //helper.GetPhysician(987655);
+
+
+
+
+
 
     }
 
@@ -85,6 +93,10 @@ public class LoginActivity extends Activity {
         ((Button)findViewById(R.id.patientLoginButton)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
+
+                Login.Patient = new Patient("test first", "test last");
+                Login.Patient.setId(8888);
+
                 Intent launchIntent =
                         new Intent(ctx, PatientMainActivity.class);
                 //PendingIntent contentIntent =

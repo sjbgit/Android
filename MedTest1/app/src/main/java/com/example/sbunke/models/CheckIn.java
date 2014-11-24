@@ -28,7 +28,6 @@ public class CheckIn {
         this.checkInDate = new Date();
     }
 
-
     public Patient getPatient() {
         return patient;
     }

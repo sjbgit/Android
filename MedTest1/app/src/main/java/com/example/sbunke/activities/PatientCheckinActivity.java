@@ -32,6 +32,7 @@ import com.example.sbunke.models.Patient;
 import com.example.sbunke.models.Prescription;
 import com.example.sbunke.repositories.PatientRepository;
 import com.example.sbunke.repositories.PhysicianRepository;
+import com.example.sbunke.services.ServiceHelper;
 import com.example.sbunke.viewmodels.PrescriptionCheckInViewModel;
 
 import java.io.File;
@@ -89,6 +90,8 @@ public class PatientCheckInActivity extends Activity {
                 //(new PatientRepository()).SaveCheckIn();
 
                 checkIn.setPrescriptionCheckInViewModelCollection(prescriptionCheckInViewModels);
+
+                ServiceHelper.AddCheckIn(checkIn);
 
                 Integer x = 1;
 

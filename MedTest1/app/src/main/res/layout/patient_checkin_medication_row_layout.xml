@@ -12,18 +12,11 @@
 
         android:id="@+id/tvPrescriptionTakenQuestion" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
 
-        android:text="Date/Time taken: "
-
-        android:id="@+id/tvPrescriptionTakenDate" />
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         >
 
@@ -57,7 +50,14 @@
         </LinearLayout>
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
 
+        android:text=""
+
+        android:id="@+id/tvPrescriptionTakenDate" />
 
 
 
