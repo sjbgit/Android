@@ -29,7 +29,9 @@ import com.example.sbunke.adapters.PatientCheckInArrayAdapter;
 import com.example.sbunke.models.CheckIn;
 import com.example.sbunke.models.Login;
 import com.example.sbunke.models.Patient;
+import com.example.sbunke.models.PatientCheckIn;
 import com.example.sbunke.models.Prescription;
+import com.example.sbunke.models.PrescriptionCheckIn;
 import com.example.sbunke.repositories.PatientRepository;
 import com.example.sbunke.repositories.PhysicianRepository;
 import com.example.sbunke.services.ServiceHelper;
@@ -86,12 +88,30 @@ public class PatientCheckInActivity extends Activity {
         //btnSaveCheckIn
         ((Button)findViewById(R.id.btnSaveCheckIn)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(context, "Check-In Saved", Toast.LENGTH_SHORT).show();
+
                 //(new PatientRepository()).SaveCheckIn();
 
                 checkIn.setPrescriptionCheckInViewModelCollection(prescriptionCheckInViewModels);
 
-                ServiceHelper.AddCheckIn(checkIn);
+                //TODO: REFACTOR THIS - ONLY ONE MODEL
+                PatientCheckIn patientCheckIn = new PatientCheckIn();
+                patientCheckIn.setPatientId(checkIn.getPatient().getId());
+                patientCheckIn.setPhysicianId(checkIn.getPatient().getPhysician().getId());
+                patientCheckIn.setMouthPain(checkIn.getMouthPain());
+                patientCheckIn.setFoodConsumption(checkIn.getFoodConsumption());
+
+                for (PrescriptionCheckInViewModel vm : checkIn.getPrescriptionCheckInViewModelCollection()) {
+                    PrescriptionCheckIn pci = new PrescriptionCheckIn();
+                    pci.setPrescriptionName(vm.getPrescriptionName());
+                    pci.setPrescriptionCheckInDate(vm.getDateTaken().getTime());
+                    patientCheckIn.getPrescriptionCheckIns().add(pci);
+                }
+
+
+
+                ServiceHelper.AddCheckIn(patientCheckIn);
+
+                Toast.makeText(context, "Check-In Saved", Toast.LENGTH_SHORT).show();
 
                 Integer x = 1;
 

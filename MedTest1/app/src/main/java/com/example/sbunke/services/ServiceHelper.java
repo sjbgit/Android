@@ -3,12 +3,8 @@ package com.example.sbunke.services;
 import android.os.AsyncTask;
 
 import com.example.sbunke.models.CheckIn;
-import com.example.sbunke.models.CheckInMini;
+import com.example.sbunke.models.PatientCheckIn;
 import com.example.sbunke.models.Physician;
-import com.example.sbunke.models.User;
-import com.example.sbunke.viewmodels.PrescriptionCheckInViewModel;
-
-import java.util.Collection;
 
 import retrofit.RestAdapter;
 
@@ -24,17 +20,20 @@ public class ServiceHelper {
         return restApi.getCredentials(username,password);
     }
 
-    public static void AddCheckIn(CheckIn checkIn) {
+    public static void AddCheckIn(PatientCheckIn patientCheckIn) {
 
-        final CheckIn innerCheckIn = checkIn;
+        final PatientCheckIn innerCheckIn = patientCheckIn;
         final CheckInSvcApi restApi = new RestAdapter.Builder().setEndpoint("http://10.41.4.140:8080").build().create(CheckInSvcApi.class);
 
-        new AsyncTask<Void, Void, CheckIn>() {
+        new AsyncTask<Void, Void, PatientCheckIn>() {
 
             @Override
-            protected CheckIn doInBackground(Void... voids) {
+            protected PatientCheckIn doInBackground(Void... voids) {
                 try {
-                    boolean result = restApi.addCheckIn(new CheckInMini());
+
+                    PatientCheckIn pci = new PatientCheckIn();
+                    pci.setMouthPain("test mouth pain");
+                    boolean result = restApi.addCheckIn(pci);
                 }
                 catch (Exception ex) {
                     Exception e = ex;

@@ -12,6 +12,16 @@ public class Patient extends User {
         this.setFirstName(firstName);
     }
 
+    public Physician getPhysician() {
+        return physician;
+    }
+
+    public void setPhysician(Physician physician) {
+        this.physician = physician;
+    }
+
+    private Physician physician;
+
     public Patient(String firstName) {
         this.setFirstName(firstName);
     }

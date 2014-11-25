@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.sbunke.models.Login;
 import com.example.sbunke.models.Patient;
+import com.example.sbunke.models.Physician;
 import com.example.sbunke.models.UserCredentials;
 import com.example.sbunke.models.UserType;
 import com.example.sbunke.repositories.UserLoginRepository;
@@ -94,8 +95,13 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 // Perform action on click
 
+                //TODO: GET PATIENT FROM DB
                 Login.Patient = new Patient("test first", "test last");
+                Login.Patient.setPhysician(new Physician());
+
                 Login.Patient.setId(8888);
+
+
 
                 Intent launchIntent =
                         new Intent(ctx, PatientMainActivity.class);
