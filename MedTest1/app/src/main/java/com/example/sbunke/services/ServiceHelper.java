@@ -92,6 +92,12 @@ public class ServiceHelper {
 
     }
 
+    public static Collection<PatientCheckIn> GetAllCheckInsByPatientIdSync(final String patientId) {
+        final CheckInSvcApi restApi = new RestAdapter.Builder().setEndpoint(address).build().create(CheckInSvcApi.class);
+        return restApi.getCheckInsByPatientId(patientId);
+
+    }
+
     public static void GetAllCheckInsByPatientId(final String patientId) {
 
         //final PatientCheckIn innerCheckIn = patientCheckIn;
