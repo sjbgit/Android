@@ -11,4 +11,7 @@ public class Login {
     //public static boolean IsPhysician;
     public static Patient Patient;
     public static Physician Physician;
+
+    public static Patient PhysicianSelectedPatient;
+
 }

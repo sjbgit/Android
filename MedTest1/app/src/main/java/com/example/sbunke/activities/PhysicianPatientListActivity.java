@@ -130,15 +130,25 @@ public class PhysicianPatientListActivity extends Activity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int index = info.position;
+
+        //int x = index;
+
+
+
         //Switch on the item's ID to find the action the user selected
         switch(item.getItemId()) {
             case R.id.menu_physician_patient_checkins:
+                Login.PhysicianSelectedPatient = patients.get(index);
                 //Perform delete actions
                 Intent patientHistoryIntent =
                         new Intent(context, PatientCheckInHistoryActivity.class);
                 context.startActivity(patientHistoryIntent);
                 break;
             case R.id.menu_physician_patient_prescriptions:
+                Login.PhysicianSelectedPatient = patients.get(index);
                 Intent launchIntent =
                         new Intent(this, PatientPrescriptionsListActivity.class);
                 this.startActivity(launchIntent);
