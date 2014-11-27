@@ -116,6 +116,12 @@ public class LoginActivity extends Activity {
         ((Button)findViewById(R.id.physicianLoginButton)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
+
+                Physician phys = new Physician();
+                phys.setId("test phys");
+
+                Login.Physician = phys;
+
                 Intent launchIntent =
                         new Intent(ctx, PhysicianMainActivity.class);
                 //PendingIntent contentIntent =

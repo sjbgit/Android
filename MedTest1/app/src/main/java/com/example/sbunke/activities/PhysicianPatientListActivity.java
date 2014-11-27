@@ -18,12 +18,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.sbunke.adapters.PatientArrayAdapter;
+import com.example.sbunke.models.Login;
 import com.example.sbunke.models.Physician;
 import com.example.sbunke.repositories.PhysicianRepository;
 import com.example.sbunke.models.Patient;
 import com.example.sbunke.services.ServiceHelper;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -55,7 +57,9 @@ public class PhysicianPatientListActivity extends Activity {
 
         addFilter();
 
-        ServiceHelper.GetPatientsByPhysicianId("test phys");
+
+
+        //ServiceHelper.GetPatientsByPhysicianId("test phys");
 
     }
 
@@ -168,6 +172,64 @@ public class PhysicianPatientListActivity extends Activity {
                 Thread.sleep(1000);
                 //patients = repository.GetAllPatients(ID);
                 patients.clear();
+                Collection<Patient> pats = ServiceHelper.GetPatientsByPhysicianIdSync(Login.Physician.getId());
+                patients.addAll(pats);
+                //patients.addAll(repository.GetAllPatients(ID));
+                //adapter.notifyDataSetChanged();
+                result = 1;
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            return result;
+
+            //patients = repository.GetAllPatients(ID);
+            //for () {
+            //    listItems.add(something to add);
+            //}
+
+        }
+
+        @Override
+        protected void onPostExecute(Integer result) {
+            if (progressDialog!=null) {
+                progressDialog.dismiss();
+                //TODO: ENABLE WHEN DONE LOADING
+                //b.setEnabled(true);
+            }
+
+            //progressDialog.dismiss();
+            if (result == 1) {
+                adapter.notifyDataSetChanged();
+            }
+        }
+    }
+
+
+    /*
+    private class LoadListTask extends AsyncTask<String, Void, Integer> {
+
+        @Override
+        protected void onPreExecute() {
+
+            progressDialog.setTitle("Updating Patient List...");
+            progressDialog.setMessage("Please wait.");
+            progressDialog.setCancelable(false);
+            progressDialog.setIndeterminate(true);
+            progressDialog.show();
+        }
+
+        @Override
+        protected Integer doInBackground(String... params) {
+
+            Integer result = 0;
+
+            try {
+                //Do something...
+                Thread.sleep(1000);
+                //patients = repository.GetAllPatients(ID);
+                patients.clear();
                 patients.addAll(repository.GetAllPatients(ID));
                 //adapter.notifyDataSetChanged();
                 result = 1;
@@ -199,6 +261,7 @@ public class PhysicianPatientListActivity extends Activity {
             }
         }
     }
+    */
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

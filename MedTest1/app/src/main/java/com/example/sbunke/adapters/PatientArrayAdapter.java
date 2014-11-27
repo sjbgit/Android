@@ -55,6 +55,7 @@ public class PatientArrayAdapter extends ArrayAdapter<Patient> implements Filter
         public ImageView imageView;
         public TextView firstNameTv;
         public TextView lastNameTv;
+        public TextView medicalRecordNumberTv;
     }
 
     @Override
@@ -83,6 +84,9 @@ public class PatientArrayAdapter extends ArrayAdapter<Patient> implements Filter
             viewContainer.imageView = (ImageView)
                     rowView.findViewById(R.id.icon);
 
+            viewContainer.medicalRecordNumberTv = (TextView)
+                    rowView.findViewById(R.id.tvMedicalRecordNumber);
+
             //---assign the view container to the rowView---
             rowView.setTag(viewContainer);
         } else {
@@ -97,7 +101,8 @@ public class PatientArrayAdapter extends ArrayAdapter<Patient> implements Filter
 
         //---customize the content of each row based on position---
         viewContainer.firstNameTv.setText(patients.get(position).getFirstName()); //[position]);
-        viewContainer.lastNameTv.setText(patients.get(position).getLastName() + " ...Some descriptions here...");
+        viewContainer.lastNameTv.setText(patients.get(position).getLastName());
+        viewContainer.medicalRecordNumberTv.setText(patients.get(position).getMedicalRecordNumber());
         //viewContainer.imageView.setImageResource(imageIds[position]);
         return rowView;
     }

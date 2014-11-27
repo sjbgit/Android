@@ -45,4 +45,15 @@ public class Patient extends User {
     public void setPhysicianId(String physicianId) {
         this.physicianId = physicianId;
     }
+
+    private String medicalRecordNumber;
+
+    public String getMedicalRecordNumber() {
+        return medicalRecordNumber;
+    }
+
+    public void setMedicalRecordNumber(String medicalRecordNumber) {
+        this.medicalRecordNumber = medicalRecordNumber;
+    }
+
 }

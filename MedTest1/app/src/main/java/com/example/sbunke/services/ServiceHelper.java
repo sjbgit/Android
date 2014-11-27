@@ -25,6 +25,11 @@ public class ServiceHelper {
         return restApi.getCredentials(username,password);
     }
 
+    public static Collection<Patient> GetPatientsByPhysicianIdSync(String physicianId) {
+        final PatientSvcApi restApi = new RestAdapter.Builder().setEndpoint(address).build().create(PatientSvcApi.class);
+        return restApi.getPatientsByPhysicianId(physicianId);
+    }
+
     public static void GetPatientsByPhysicianId(String physicianId) {
         final String innerId = physicianId;
         final PatientSvcApi restApi = new RestAdapter.Builder().setEndpoint("http://10.41.4.140:8080").build().create(PatientSvcApi.class);
