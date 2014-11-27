@@ -5,17 +5,19 @@ package com.example.sbunke.models;
  */
 public class PrescriptionCheckIn {
 
-    public long getCheckInDate() {
+    public PrescriptionCheckIn() {
 
-        return prescriptionCheckInDate;
     }
 
+    private long prescriptionCheckInDate;
+
+    public long getPrescriptionCheckInDate() {
+        return prescriptionCheckInDate;
+    }
 
     public void setPrescriptionCheckInDate(long prescriptionCheckInDate) {
         this.prescriptionCheckInDate = prescriptionCheckInDate;
     }
-
-    private long prescriptionCheckInDate;
 
     private String prescriptionName;
 
@@ -36,4 +38,5 @@ public class PrescriptionCheckIn {
     public void setPrescriptionDosage(String prescriptionDosage) {
         this.prescriptionDosage = prescriptionDosage;
     }
+
 }

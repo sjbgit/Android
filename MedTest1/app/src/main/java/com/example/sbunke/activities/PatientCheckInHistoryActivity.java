@@ -11,6 +11,7 @@ import com.example.sbunke.activities.R;
 import com.example.sbunke.adapters.PhysicianCheckInArrayAdapter;
 import com.example.sbunke.models.Patient;
 import com.example.sbunke.repositories.PatientRepository;
+import com.example.sbunke.services.ServiceHelper;
 import com.example.sbunke.viewmodels.PatientCheckInViewModel;
 import com.example.sbunke.views.GraphView;
 
@@ -23,7 +24,7 @@ public class PatientCheckInHistoryActivity extends Activity {
     PhysicianCheckInArrayAdapter physicianCheckInArrayAdapter;
     List<PatientCheckInViewModel> checkIns;
 
-    long patientId = -1;
+    String patientId = "test id";
 
 
     @Override
@@ -31,10 +32,13 @@ public class PatientCheckInHistoryActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_check_in_history);
         //setGraph();
+
+        ServiceHelper.GetAllCheckInsByPatientId(patientId);
+
         bindList(patientId);
     }
 
-    private void bindList(long patientId) {
+    private void bindList(String patientId) {
         PatientRepository repo = new PatientRepository();
         checkIns = repo.getAllCheckInsForPatient(patientId);
         physicianCheckInArrayAdapter = new PhysicianCheckInArrayAdapter(this, checkIns);

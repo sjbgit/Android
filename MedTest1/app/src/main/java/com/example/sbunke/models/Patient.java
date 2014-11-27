@@ -35,4 +35,14 @@ public class Patient extends User {
     public void setPrescriptions(Collection<Prescription> prescriptions) {
         this.prescriptions = prescriptions;
     }
+
+    private String physicianId;
+
+    public String getPhysicianId() {
+        return physicianId;
+    }
+
+    public void setPhysicianId(String physicianId) {
+        this.physicianId = physicianId;
+    }
 }

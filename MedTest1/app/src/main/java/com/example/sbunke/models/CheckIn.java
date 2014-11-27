@@ -3,6 +3,7 @@ package com.example.sbunke.models;
 import com.example.sbunke.viewmodels.PatientCheckInViewModel;
 import com.example.sbunke.viewmodels.PrescriptionCheckInViewModel;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -26,6 +27,7 @@ public class CheckIn {
     public CheckIn(Patient patient) {
         this.patient = patient;
         this.checkInDate = new Date();
+        this.prescriptionCheckInViewModelCollection = new ArrayList<PrescriptionCheckInViewModel>();
     }
 
     public Patient getPatient() {

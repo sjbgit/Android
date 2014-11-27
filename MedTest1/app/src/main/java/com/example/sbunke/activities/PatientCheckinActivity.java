@@ -5,9 +5,7 @@ import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -23,17 +21,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.sbunke.activities.R;
-import com.example.sbunke.adapters.PatientArrayAdapter;
 import com.example.sbunke.adapters.PatientCheckInArrayAdapter;
 import com.example.sbunke.models.CheckIn;
 import com.example.sbunke.models.Login;
-import com.example.sbunke.models.Patient;
 import com.example.sbunke.models.PatientCheckIn;
 import com.example.sbunke.models.Prescription;
 import com.example.sbunke.models.PrescriptionCheckIn;
 import com.example.sbunke.repositories.PatientRepository;
-import com.example.sbunke.repositories.PhysicianRepository;
 import com.example.sbunke.services.ServiceHelper;
 import com.example.sbunke.viewmodels.PrescriptionCheckInViewModel;
 
@@ -101,10 +95,14 @@ public class PatientCheckInActivity extends Activity {
                 patientCheckIn.setFoodConsumption(checkIn.getFoodConsumption());
 
                 for (PrescriptionCheckInViewModel vm : checkIn.getPrescriptionCheckInViewModelCollection()) {
-                    PrescriptionCheckIn pci = new PrescriptionCheckIn();
-                    pci.setPrescriptionName(vm.getPrescriptionName());
-                    pci.setPrescriptionCheckInDate(vm.getDateTaken().getTime());
-                    patientCheckIn.getPrescriptionCheckIns().add(pci);
+
+                    //if date was not set, then prescription was not taken
+                    if (vm.getDateTaken() != null) {
+                        PrescriptionCheckIn pci = new PrescriptionCheckIn();
+                        pci.setPrescriptionName(vm.getPrescriptionName());
+                        pci.setPrescriptionCheckInDate(vm.getDateTaken().getTime());
+                        patientCheckIn.getPrescriptionCheckIns().add(pci);
+                    }
                 }
 
 

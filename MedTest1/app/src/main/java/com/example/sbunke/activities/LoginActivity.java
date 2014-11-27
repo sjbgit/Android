@@ -97,9 +97,11 @@ public class LoginActivity extends Activity {
 
                 //TODO: GET PATIENT FROM DB
                 Login.Patient = new Patient("test first", "test last");
-                Login.Patient.setPhysician(new Physician());
+                Physician phys = new Physician();
+                phys.setId("test phys");
+                Login.Patient.setPhysician(phys);
 
-                Login.Patient.setId(8888);
+                Login.Patient.setId("test");
 
 
 

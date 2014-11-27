@@ -20,6 +20,6 @@ public interface CheckInSvcApi {
     public boolean addCheckIn(@Body PatientCheckIn checkIn);
 
     @GET(CHECKIN_SVC_PATH + "/{id}")
-    public Collection<PatientCheckIn> getCheckInsByPatientId(@Path("id") long id);
+    public Collection<PatientCheckIn> getCheckInsByPatientId(@Path("id") String id);
 
 }

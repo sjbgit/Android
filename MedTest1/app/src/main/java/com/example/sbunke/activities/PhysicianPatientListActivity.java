@@ -21,6 +21,7 @@ import com.example.sbunke.adapters.PatientArrayAdapter;
 import com.example.sbunke.models.Physician;
 import com.example.sbunke.repositories.PhysicianRepository;
 import com.example.sbunke.models.Patient;
+import com.example.sbunke.services.ServiceHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,9 @@ public class PhysicianPatientListActivity extends Activity {
         startTask();
 
         addFilter();
+
+        ServiceHelper.GetPatientsByPhysicianId("test phys");
+
     }
 
     private void startTask() {

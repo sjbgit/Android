@@ -34,7 +34,7 @@ public class PatientRepository {
 
     }
 
-    public List<PatientCheckInViewModel> getAllCheckInsForPatient(long id) {
+    public List<PatientCheckInViewModel> getAllCheckInsForPatient(String id) {
         List<PatientCheckInViewModel> checkIns = new ArrayList<PatientCheckInViewModel>();
         checkIns.add(new PatientCheckInViewModel(new Date(), "main 1", "secondary 1"));
         checkIns.add(new PatientCheckInViewModel(new Date(), "main 2", "secondary 2"));

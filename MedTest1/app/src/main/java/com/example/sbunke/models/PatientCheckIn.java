@@ -2,7 +2,6 @@ package com.example.sbunke.models;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 /**
  * Created by sbunke on 11/21/2014.
@@ -29,25 +28,25 @@ public class PatientCheckIn {
         this.prescriptionCheckIns = new ArrayList<PrescriptionCheckIn>();
     }
 
-    public long getPatientId() {
+    public String getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(long patientId) {
+    public void setPatientId(String patientId) {
         this.patientId = patientId;
     }
 
-    public long getPhysicianId() {
+    public String getPhysicianId() {
         return physicianId;
     }
 
-    public void setPhysicianId(long physicianId) {
+    public void setPhysicianId(String physicianId) {
         this.physicianId = physicianId;
     }
 
-    private long patientId;
+    private String patientId;
 
-    private long physicianId;
+    private String physicianId;
 
     private String mouthPain;
 
