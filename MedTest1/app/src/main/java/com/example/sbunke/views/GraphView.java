@@ -31,23 +31,32 @@ public class GraphView extends View
 
     private void DrawLegend(Canvas canvas) {
         Paint paint = new Paint();
-        //paint.setColor(COLORS[0]);
-        //paint.setStyle(Paint.Style.FILL);
-        //canvas.drawPaint(paint);
 
-        //Paint paint1 = new Paint();
+        //Severe pain
         paint.setColor(COLORS[0]);
         paint.setStyle(Paint.Style.FILL);
-        //canvas.drawRect(10, 10, 10, 10, paint1);
         RectF rectf = new RectF (50, 700, 100, 750);
         canvas.drawRect(rectf, paint);
-
         paint.setColor(Color.BLACK);
-        //paint.setColor(android.R.color.black);
         paint.setTextSize(50);
-        canvas.drawText("Severe pain check-ins", 125, 730, paint);
+        canvas.drawText("Severe pain", 125, 730, paint);
 
 
+        paint.setColor(COLORS[1]);
+        paint.setStyle(Paint.Style.FILL);
+        RectF controlledRect = new RectF (50, 800, 100, 850);
+        canvas.drawRect(controlledRect, paint);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(50);
+        canvas.drawText("Well-controlled pain", 125, 830, paint);
+
+        paint.setColor(COLORS[2]);
+        paint.setStyle(Paint.Style.FILL);
+        RectF moderateRect = new RectF (50, 900, 100, 950);
+        canvas.drawRect(moderateRect, paint);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(50);
+        canvas.drawText("Moderate pain", 125, 930, paint);
 
 
 
