@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.sbunke.activities.R;
 import com.example.sbunke.adapters.PatientCheckInArrayAdapter;
 import com.example.sbunke.adapters.PatientPrescriptionsArrayAdapter;
+import com.example.sbunke.models.Login;
 import com.example.sbunke.models.Prescription;
 import com.example.sbunke.repositories.PatientRepository;
 import com.example.sbunke.viewmodels.PrescriptionCheckInViewModel;
@@ -54,6 +55,15 @@ public class PatientPrescriptionsListActivity extends Activity {
     }
 
     private void initializeButtons() {
+         if(Login.Patient != null) {
+
+             Button b1 = (Button)findViewById(R.id.btnAddPrescription);
+             b1.setVisibility(View.INVISIBLE);
+             Button b2 = (Button)findViewById(R.id.btnSavePrescriptionChanges);
+             b2.setVisibility(View.INVISIBLE);
+
+         }
+
         ((Button)findViewById(R.id.btnAddPrescription)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 final Dialog dialog = new Dialog(context);
@@ -98,6 +108,16 @@ public class PatientPrescriptionsListActivity extends Activity {
                         dialog.dismiss();
                     }
                 });
+
+            }
+        });
+
+        ((Button)findViewById(R.id.btnSavePrescriptionChanges)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(),
+                        "Prescription Changes Saved",
+                        Toast.LENGTH_SHORT).show();
+
             }
         });
     }

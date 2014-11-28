@@ -50,7 +50,8 @@ public class PatientCheckInHistoryActivity extends Activity {
 
     private void bindList(String patientId) {
         PatientRepository repo = new PatientRepository();
-        checkIns = repo.getAllCheckInsForPatient(patientId);
+        checkIns = new ArrayList<PatientCheckInViewModel>();
+        //checkIns = repo.getAllCheckInsForPatient(patientId);
         physicianCheckInArrayAdapter = new PhysicianCheckInArrayAdapter(this, checkIns);
         //physicianCheckInArrayAdapter.notifyDataSetChanged();
 

@@ -3,7 +3,6 @@
     package="com.example.sbunke.activities" >
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -85,6 +84,10 @@
         <activity
             android:name=".PickDateTimeActivity"
             android:label="@string/title_activity_pick_date_time" >
+        </activity>
+        <activity
+            android:name=".PatientCheckInGraph"
+            android:label="@string/title_activity_patient_check_in_graph" >
         </activity>
     </application>
 

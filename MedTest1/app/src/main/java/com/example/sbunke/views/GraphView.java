@@ -28,6 +28,30 @@ public class GraphView extends View
             value_degree[i]=values[i];
         }
     }
+
+    private void DrawLegend(Canvas canvas) {
+        Paint paint = new Paint();
+        //paint.setColor(COLORS[0]);
+        //paint.setStyle(Paint.Style.FILL);
+        //canvas.drawPaint(paint);
+
+        //Paint paint1 = new Paint();
+        paint.setColor(COLORS[0]);
+        paint.setStyle(Paint.Style.FILL);
+        //canvas.drawRect(10, 10, 10, 10, paint1);
+        RectF rectf = new RectF (50, 700, 100, 750);
+        canvas.drawRect(rectf, paint);
+
+        paint.setColor(Color.BLACK);
+        //paint.setColor(android.R.color.black);
+        paint.setTextSize(50);
+        canvas.drawText("Severe pain check-ins", 125, 730, paint);
+
+
+
+
+
+    }
     @Override
     protected void onDraw(Canvas canvas) {
         // TODO Auto-generated method stub
@@ -45,6 +69,8 @@ public class GraphView extends View
                 canvas.drawArc(rectf, temp, value_degree[i], true, paint);
             }
         }
+
+        DrawLegend(canvas);
     }
 
 }

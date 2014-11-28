@@ -8,6 +8,13 @@
 
         android:title="Check-Ins"
         />
+
+    <item
+        android:id="@+id/menu_physician_patient_checkins_graph"
+
+        android:title="Check-Ins Graph"
+        />
+
     <item
         android:id="@+id/menu_physician_patient_prescriptions"
 

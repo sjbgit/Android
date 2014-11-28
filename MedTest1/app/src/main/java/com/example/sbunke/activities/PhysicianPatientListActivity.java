@@ -154,6 +154,15 @@ public class PhysicianPatientListActivity extends Activity {
                 this.startActivity(launchIntent);
                 //Perform edit actions
                 break;
+
+            case R.id.menu_physician_patient_checkins_graph:
+                Login.PhysicianSelectedPatient = patients.get(index);
+                Intent graphIntent =
+                        new Intent(this, PatientCheckInGraph.class);
+                this.startActivity(graphIntent);
+                //Perform edit actions
+                break;
+
             default:
                 return super.onContextItemSelected(item);
         }

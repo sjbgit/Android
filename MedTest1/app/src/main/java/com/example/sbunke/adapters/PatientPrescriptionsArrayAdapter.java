@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.sbunke.activities.PatientMainActivity;
 import com.example.sbunke.activities.R;
+import com.example.sbunke.models.Login;
 import com.example.sbunke.models.Patient;
 import com.example.sbunke.models.Prescription;
 
@@ -76,6 +77,11 @@ public class PatientPrescriptionsArrayAdapter extends ArrayAdapter<Prescription>
                         rowView.findViewById(R.id.btnEditPrescription);
                 viewContainer.btnDelete = (Button)
                         rowView.findViewById(R.id.btnDeletePrescription);
+
+                if(Login.Patient != null) {
+                    viewContainer.btnEdit.setVisibility(View.INVISIBLE);
+                    viewContainer.btnDelete.setVisibility(View.INVISIBLE);
+                }
 
 
 

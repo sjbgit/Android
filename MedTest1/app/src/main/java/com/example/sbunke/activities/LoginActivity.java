@@ -95,6 +95,13 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 // Perform action on click
 
+                /*
+                boolean isEmpty = LoginInfoIsEmpty();
+                if (isEmpty) {
+                    return;
+                }
+                */
+
                 //TODO: GET PATIENT FROM DB
                 Login.Patient = new Patient("test first", "test last");
                 Physician phys = new Physician();
@@ -117,6 +124,13 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 // Perform action on click
 
+                /*
+                boolean isEmpty = LoginInfoIsEmpty();
+                if (isEmpty) {
+                    return;
+                }
+                */
+
                 Physician phys = new Physician();
                 phys.setId("test phys");
 
@@ -135,6 +149,33 @@ public class LoginActivity extends Activity {
         UserCredentials userCredentials = getUserCredentials();
 
         retrieveFromUiValidateAndStoreUserCredentials();
+    }
+
+    private boolean LoginInfoIsEmpty() {
+        String userName = ((TextView)findViewById(R.id.tvUserName)).getText().toString();
+        String password = ((TextView)findViewById(R.id.tvPassword)).getText().toString();
+
+        if (userName.length() == 0 || password.length() == 0){
+            AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+
+            builder.setMessage(R.string.login_failed_message)
+                    .setTitle(R.string.login_title);
+
+
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User clicked OK button
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            return true;
+        }
+
+        return false;
+
+
     }
 
     private void retrieveFromUiValidateAndStoreUserCredentials() {
