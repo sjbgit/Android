@@ -69,6 +69,8 @@ public class PhysicianCheckInArrayAdapter extends ArrayAdapter<PatientCheckInVie
             viewContainer.imageView = (ImageView)
                     rowView.findViewById(R.id.icon);
 
+
+
             //---assign the view container to the rowView---
             rowView.setTag(viewContainer);
         } else {
@@ -81,14 +83,35 @@ public class PhysicianCheckInArrayAdapter extends ArrayAdapter<PatientCheckInVie
             viewContainer = (ViewContainer) rowView.getTag();
         }
 
+
+
+
         SimpleDateFormat formatter = SharedPreferencesHelper.formatter;
 
         //---customize the content of each row based on position---
         viewContainer.tvCheckInDateTime.setText(formatter.format(checkIns.get(position).checkInDate));
         //Date d = checkIns.get(position).checkInDate;
-        viewContainer.tvCheckInInfo.setText(checkIns.get(position).mainInformation); //[position]);
-        viewContainer.tvMoreCheckInInfo.setText(checkIns.get(position).secondaryInformation + " ...Some descriptions here...");
+        viewContainer.tvCheckInInfo.setText("Pain: " + checkIns.get(position).mainInformation); //[position]);
+        viewContainer.tvMoreCheckInInfo.setText("Stopped from eating/drinking: " + checkIns.get(position).secondaryInformation);
         //viewContainer.imageView.setImageResource(imageIds[position]);
+
+        if (checkIns.get(position).mainInformation.toUpperCase().equals("SEVERE") || checkIns.get(position).secondaryInformation.toUpperCase().equals("I CAN'T EAT")) {
+            int id = R.drawable.error;
+            viewContainer.imageView.setImageResource(id);
+            //int id = context.getResources().getIdentifier("com.example.sbunke:drawable/" + StringGenerated, null, null);
+            //viewContainer.imageView.setImageResource();
+        }
+        else if(checkIns.get(position).mainInformation.toUpperCase().equals("MODERATE") || checkIns.get(position).secondaryInformation.toUpperCase().equals("SOME")) {
+            int id = R.drawable.warning;
+            viewContainer.imageView.setImageResource(id);
+        }
+        else {
+            int id = R.drawable.ok;
+            viewContainer.imageView.setImageResource(id);
+        }
+
+
+
         return rowView;
     }
 
