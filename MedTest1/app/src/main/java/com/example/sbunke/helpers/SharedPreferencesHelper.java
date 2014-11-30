@@ -1,10 +1,14 @@
 package com.example.sbunke.helpers;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.sbunke.activities.LoginActivity;
 import com.example.sbunke.models.Prescription;
+import com.example.sbunke.models.UserCredentials;
+import com.example.sbunke.models.UserType;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -86,9 +90,10 @@ public class SharedPreferencesHelper {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(SharedPreferencesHelper.USER_ALARMS, times);
         editor.commit();
+    }
 
-
-
-
+    public static UserCredentials GetCredentialsFromPreferences(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SharedPreferencesHelper.USER_ALARMS, Activity.MODE_PRIVATE);
+        return new UserCredentials(sharedPreferences.getString(LoginActivity.USER_NAME, ""), sharedPreferences.getString(LoginActivity.USER_PASSWORD, ""), sharedPreferences.getString(LoginActivity.USER_TYPE, UserType.INVALID));
     }
 }

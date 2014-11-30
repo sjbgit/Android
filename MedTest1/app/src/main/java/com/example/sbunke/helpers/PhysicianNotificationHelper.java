@@ -1,9 +1,12 @@
 package com.example.sbunke.helpers;
 
 import com.example.sbunke.models.Patient;
+import com.example.sbunke.repositories.CheckInRepository;
 import com.example.sbunke.repositories.PhysicianRepository;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by sbunke on 11/28/2014.
@@ -21,11 +24,17 @@ public class PhysicianNotificationHelper {
     }
 
 
-    public void DeterminePatientsExceedingThresholds() {
+    public Collection<String> GetAllAlertsForAllPatients() {
+        CheckInRepository repository = new CheckInRepository();
 
+        List<String> alerts = new ArrayList<String>();
 
+        for (Patient p : patients) {
+            List<String> patientAlerts = repository.GetThresholdAlertsForPatientCheckIns(p.getId());
+            alerts.addAll(patientAlerts);
+        }
 
-
+        return alerts;
     }
 
 

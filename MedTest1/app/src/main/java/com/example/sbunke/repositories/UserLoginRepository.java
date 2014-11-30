@@ -14,7 +14,7 @@ public class UserLoginRepository {
 
         String result = UserType.INVALID;
 
-        //Hit service with credentials - return Physician of Patient
+        //Hit service with credentials - return Physician or Patient
 
         //return UserType.INVALID;
 
