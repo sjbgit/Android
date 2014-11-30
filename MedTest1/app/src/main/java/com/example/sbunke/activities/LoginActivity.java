@@ -125,12 +125,12 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 // Perform action on click
 
-                /*
+
                 boolean isEmpty = LoginInfoIsEmpty();
                 if (isEmpty) {
                     return;
                 }
-                */
+
 
                 Physician phys = new Physician();
                 phys.setId("test phys");

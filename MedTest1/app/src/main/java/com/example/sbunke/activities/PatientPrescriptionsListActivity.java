@@ -40,8 +40,6 @@ public class PatientPrescriptionsListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_prescriptions_list);
 
-        //TODO: GET PRESCRIPTIONS FROM PHYSICIAN PATIENT OR LOGIN PATIENT
-
         prescriptions = new ArrayList<Prescription>();
         repository = new PatientRepository();
         populateList();

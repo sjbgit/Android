@@ -117,11 +117,25 @@ public class PatientCheckInAlarmsListActivity extends Activity {
 
         List<Date> alarmDateTimes = helper.getAlarmTimesFromPreferences();
 
-
-
-
+        if (alarmDateTimes == null) {
+            alarmDateTimes = new ArrayList<Date>();
+        }
 
         int[] numbers = {8,12,16,20};
+
+
+        if (alarmDateTimes.size() < numbers.length) {
+            int diff = numbers.length - alarmDateTimes.size();
+            for (int i = 0; i < diff; i++) {
+                Date newDate = new Date();
+                newDate.setHours(numbers[i]);
+                newDate.setMinutes(0);
+                alarmDateTimes.add(newDate);
+            }
+        }
+
+        return alarmDateTimes;
+
 
 
         //add the number of times necessary
@@ -140,7 +154,7 @@ public class PatientCheckInAlarmsListActivity extends Activity {
         */
 
 
-        List<Date> dates = new ArrayList<Date>();
+        //List<Date> dates = new ArrayList<Date>();
         /*
         if (alarmDateTimes.size() == 0) {
             for (int item : numbers){
@@ -153,11 +167,13 @@ public class PatientCheckInAlarmsListActivity extends Activity {
         }
         */
 
+        /*
         for (Date item : alarmDateTimes) {
             dates.add(item);
         }
-        return dates;
 
+        return dates;
+        */
     }
 
     private void initializeList() {
