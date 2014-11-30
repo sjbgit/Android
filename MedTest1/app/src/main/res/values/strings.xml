@@ -13,7 +13,7 @@
     <string name="login_failed_message">Login Failed</string>
     <string name="ok">OK</string>
     <string name="title_activity_check_in_alarms">Check-In Alarms</string>
-    <string name="title_activity_patient_checkin">Patient Check-in</string>
+    <string name="title_activity_patient_checkin">Patient Check-In</string>
     <string name="patient_pain_question">How bad is your mouth pain/sore throat?</string>
     <string name="pain_controlled">Well-Controlled</string>
     <string name="pain_moderate">Moderate</string>

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.sbunke.activities.PatientCheckInActivity" >
     <item android:id="@+id/save_checkin"
-        android:title="@string/save_checkin"
+        android:title=""
         android:orderInCategory="100"
         android:showAsAction="ifRoom" />
 </menu>

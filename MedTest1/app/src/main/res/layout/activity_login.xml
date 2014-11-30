@@ -64,7 +64,7 @@
         android:layout_below="@+id/tvPassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="49dp"
-        android:visibility="visible"
+        android:visibility="invisible"
         />
 
     <Button

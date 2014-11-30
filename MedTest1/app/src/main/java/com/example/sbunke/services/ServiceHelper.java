@@ -18,21 +18,21 @@ import retrofit.RestAdapter;
  */
 public class ServiceHelper {
 
-    private final static String address = "http://10.41.4.140:8080";
+    private final static String ADDRESS = "http://192.168.0.5:8080";  //http://10.41.4.140:8080";
 
     public static Credentials GetCredentialsSync(String username, String password) {
-        final CredentialsSvcApi restApi = new RestAdapter.Builder().setEndpoint("http://10.41.4.140:8080").build().create(CredentialsSvcApi.class);
+        final CredentialsSvcApi restApi = new RestAdapter.Builder().setEndpoint(ADDRESS).build().create(CredentialsSvcApi.class);
         return restApi.getCredentials(username,password);
     }
 
     public static Collection<Patient> GetPatientsByPhysicianIdSync(String physicianId) {
-        final PatientSvcApi restApi = new RestAdapter.Builder().setEndpoint(address).build().create(PatientSvcApi.class);
+        final PatientSvcApi restApi = new RestAdapter.Builder().setEndpoint(ADDRESS).build().create(PatientSvcApi.class);
         return restApi.getPatientsByPhysicianId(physicianId);
     }
 
     public static void GetPatientsByPhysicianId(String physicianId) {
         final String innerId = physicianId;
-        final PatientSvcApi restApi = new RestAdapter.Builder().setEndpoint("http://10.41.4.140:8080").build().create(PatientSvcApi.class);
+        final PatientSvcApi restApi = new RestAdapter.Builder().setEndpoint(ADDRESS).build().create(PatientSvcApi.class);
         //Collection<Patient> patients;
 
         new AsyncTask<Void, Void, Collection<Patient>>() {
@@ -66,7 +66,7 @@ public class ServiceHelper {
     public static void AddCheckIn(PatientCheckIn patientCheckIn) {
 
         final PatientCheckIn innerCheckIn = patientCheckIn;
-        final CheckInSvcApi restApi = new RestAdapter.Builder().setEndpoint("http://10.41.4.140:8080").build().create(CheckInSvcApi.class);
+        final CheckInSvcApi restApi = new RestAdapter.Builder().setEndpoint(ADDRESS).build().create(CheckInSvcApi.class);
 
         new AsyncTask<Void, Void, PatientCheckIn>() {
 
@@ -93,7 +93,7 @@ public class ServiceHelper {
     }
 
     public static Collection<PatientCheckIn> GetAllCheckInsByPatientIdSync(final String patientId) {
-        final CheckInSvcApi restApi = new RestAdapter.Builder().setEndpoint(address).build().create(CheckInSvcApi.class);
+        final CheckInSvcApi restApi = new RestAdapter.Builder().setEndpoint(ADDRESS).build().create(CheckInSvcApi.class);
         return restApi.getCheckInsByPatientId(patientId);
 
     }
@@ -101,7 +101,7 @@ public class ServiceHelper {
     public static void GetAllCheckInsByPatientId(final String patientId) {
 
         //final PatientCheckIn innerCheckIn = patientCheckIn;
-        final CheckInSvcApi restApi = new RestAdapter.Builder().setEndpoint("http://10.41.4.140:8080").build().create(CheckInSvcApi.class);
+        final CheckInSvcApi restApi = new RestAdapter.Builder().setEndpoint(ADDRESS).build().create(CheckInSvcApi.class);
 
 
 
@@ -136,7 +136,7 @@ public class ServiceHelper {
 
     public void GetCredentials() {
 
-        final CredentialsSvcApi restApi = new RestAdapter.Builder().setEndpoint("http://10.41.4.140:8080").build().create(CredentialsSvcApi.class);
+        final CredentialsSvcApi restApi = new RestAdapter.Builder().setEndpoint(ADDRESS).build().create(CredentialsSvcApi.class);
 
         new AsyncTask<Void, Void, Credentials>() {
 
@@ -153,7 +153,7 @@ public class ServiceHelper {
     public void GetPhysician(long id) {
 
         final long innerId = id;
-        final PhysicianSvcApi restApi = new RestAdapter.Builder().setEndpoint("http://10.41.4.140:8080").build().create(PhysicianSvcApi.class);
+        final PhysicianSvcApi restApi = new RestAdapter.Builder().setEndpoint(ADDRESS).build().create(PhysicianSvcApi.class);
 
         new AsyncTask<Void, Void, Physician>() {
 
