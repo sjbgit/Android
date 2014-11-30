@@ -98,8 +98,6 @@ public class PhysicianCheckInArrayAdapter extends ArrayAdapter<PatientCheckInVie
         if (checkIns.get(position).mainInformation.toUpperCase().equals("SEVERE") || checkIns.get(position).secondaryInformation.toUpperCase().equals("I CAN'T EAT")) {
             int id = R.drawable.error;
             viewContainer.imageView.setImageResource(id);
-            //int id = context.getResources().getIdentifier("com.example.sbunke:drawable/" + StringGenerated, null, null);
-            //viewContainer.imageView.setImageResource();
         }
         else if(checkIns.get(position).mainInformation.toUpperCase().equals("MODERATE") || checkIns.get(position).secondaryInformation.toUpperCase().equals("SOME")) {
             int id = R.drawable.warning;

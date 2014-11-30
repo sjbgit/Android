@@ -11,7 +11,7 @@ import java.util.List;
 public class PhysicianRepository {
 
 
-    public List<Patient> GetAllPatients(Long physicianId) {
+    public List<Patient> GetAllPatients(String physicianId) {
         List<Patient> patients = new ArrayList<Patient>();
         patients.add(new Patient("first name1", "alastname1"));
         patients.add(new Patient("first name2", "blastname2"));

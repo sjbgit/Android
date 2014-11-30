@@ -12,7 +12,8 @@ public class PatientCheckIn {
 
     //private
 
-    //http://www.tutorialspoint.com/java/java_date_time.htm
+    //http://www.tutorialspoint.com/java/
+    // java_date_time.htm
     //get current date
     //Date date = new Date()
 

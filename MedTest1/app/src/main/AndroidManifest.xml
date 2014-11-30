@@ -89,6 +89,20 @@
             android:name=".PatientCheckInGraph"
             android:label="@string/title_activity_patient_check_in_graph" >
         </activity>
+
+        <receiver
+            android:name="com.example.sbunke.broadcastreceivers.PhysicianCheckInReceiver"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.example.sbunke.broadcastreceivers.CheckInReceiver"
+            android:enabled="true"
+            android:exported="true" >
+        </receiver>
     </application>
 
 </manifest>
