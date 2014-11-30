@@ -37,7 +37,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         UserCredentials credentials = SharedPreferencesHelper.GetCredentialsFromPreferences(context);
         if (credentials.getUserType().equals(UserType.PHYSICIAN)) {
-            
+
         }
 
         NotificationHelper.showNotification(context);

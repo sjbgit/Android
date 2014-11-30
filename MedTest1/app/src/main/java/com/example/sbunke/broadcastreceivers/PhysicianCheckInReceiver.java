@@ -19,7 +19,9 @@ public class PhysicianCheckInReceiver extends BroadcastReceiver {
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
         //throw new UnsupportedOperationException("Not yet implemented");
-        SetRecurringPatientCheckInAlarm(context);
+
+        //TODO: UNCOMMENT THIS FOR PHYSICIAN ALARMS TO WORK
+        //SetRecurringPatientCheckInAlarm(context);
     }
 
     private void SetRecurringPatientCheckInAlarm(Context context) {

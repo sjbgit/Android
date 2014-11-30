@@ -95,12 +95,12 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 // Perform action on click
 
-                /*
+
                 boolean isEmpty = LoginInfoIsEmpty();
                 if (isEmpty) {
                     return;
                 }
-                */
+
 
                 //TODO: GET PATIENT FROM DB
                 Login.Patient = new Patient("test first", "test last");
@@ -117,6 +117,7 @@ public class LoginActivity extends Activity {
                 //PendingIntent contentIntent =
                 //        PendingIntent.getActivity(ctx, 0, launchIntent, 0);
                 ctx.startActivity(launchIntent);
+                ClearFields();
             }
         });
 
@@ -141,6 +142,7 @@ public class LoginActivity extends Activity {
                 //PendingIntent contentIntent =
                 //        PendingIntent.getActivity(ctx, 0, launchIntent, 0);
                 ctx.startActivity(launchIntent);
+                ClearFields();
             }
         });
     }
@@ -175,6 +177,24 @@ public class LoginActivity extends Activity {
 
         return false;
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+        ClearFields();
+
+    }
+
+    private void ClearFields() {
+        TextView user = ((TextView)findViewById(R.id.tvUserName));
+        TextView pass = ((TextView)findViewById(R.id.tvUserName));
+
+        user.setText("");
+        pass.setText("");
+        pass.clearComposingText();
 
     }
 

@@ -287,26 +287,32 @@ public class PatientCheckInActivity extends Activity {
                 String info = "";
                 if (rbWellControlled.isChecked()) {
                     info = "Well Controlled";
+                    /*
                     Toast.makeText(context,
                             "Well Controlled",
                             Toast.LENGTH_SHORT).show();
+                            */
                     //lvMedications.setVisibility(View.VISIBLE);
                     //https://code.google.com/p/datetimepicker/source/browse/trunk/src/com/ptashek/widgets/datetimepicker/DateTimePicker.java
                 }
 
                 if(rbModerate.isChecked()) {
                     info = "Moderate";
+                    /*
                     Toast.makeText(context,
                             "Moderate",
                             Toast.LENGTH_SHORT).show();
+                            */
                     //lvMedications.setVisibility(View.INVISIBLE);
                 }
 
                 if(rbSevere.isChecked()) {
                     info = "Severe";
+                    /*
                     Toast.makeText(context,
                             "Severe",
                             Toast.LENGTH_SHORT).show();
+                            */
                     //lvMedications.setVisibility(View.INVISIBLE);
                 }
                 checkIn.setMouthPain(info);
@@ -324,26 +330,32 @@ public class PatientCheckInActivity extends Activity {
                 String info = "";
                 if (rbStopEatingNo.isChecked()) {
                     info = "No";
+                    /*
                     Toast.makeText(context,
                             "No",
                             Toast.LENGTH_SHORT).show();
+                            */
                     //lvMedications.setVisibility(View.VISIBLE);
                     //https://code.google.com/p/datetimepicker/source/browse/trunk/src/com/ptashek/widgets/datetimepicker/DateTimePicker.java
                 }
 
                 if(rbStopEatingSome.isChecked()) {
                     info = "Some";
+                    /*
                     Toast.makeText(context,
                             "Some",
                             Toast.LENGTH_SHORT).show();
+                    */
                     //lvMedications.setVisibility(View.INVISIBLE);
                 }
 
                 if(rbStopEatingCannot.isChecked()) {
                     info = "Can't Eat";
+                    /*
                     Toast.makeText(context,
                             "Can't Eat",
                             Toast.LENGTH_SHORT).show();
+                            */
                     //lvMedications.setVisibility(View.INVISIBLE);
                 }
 
@@ -365,18 +377,22 @@ public class PatientCheckInActivity extends Activity {
                     @Override
                     public void onCheckedChanged(RadioGroup radioGroup, int i) {
                         if (rbMedicationWasTaken.isChecked()) {
+                            /*
                             Toast.makeText(context,
                                     "Medication Taken",
                                     Toast.LENGTH_SHORT).show();
+                            */
                             lvMedications.setVisibility(View.VISIBLE);
                             //https://code.google.com/p/datetimepicker/source/browse/trunk/src/com/ptashek/widgets/datetimepicker/DateTimePicker.java
                         }
 
                         if(rbDidNotTakePainMedication.isChecked()) {
+                            /*
                             Toast.makeText(context,
                                     "Medication NOT Taken",
                                     Toast.LENGTH_SHORT).show();
                             lvMedications.setVisibility(View.INVISIBLE);
+                            */
                         }
                     }
                 });
