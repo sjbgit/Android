@@ -108,7 +108,7 @@ public class LoginActivity extends Activity {
                 phys.setId("test phys");
                 Login.Patient.setPhysician(phys);
 
-                Login.Patient.setId("test");
+                Login.Patient.setId("1");
 
 
 

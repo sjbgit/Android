@@ -105,10 +105,11 @@ public class PatientPrescriptionsArrayAdapter extends ArrayAdapter<Prescription>
 
             viewContainer.btnEdit.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                   /*
                     Toast.makeText(context,
                             "Edit Script",
                             Toast.LENGTH_SHORT).show();
-
+*/
                     final Dialog dialog = new Dialog(context);
                     // Include dialog.xml file
                     dialog.setContentView(R.layout.new_prescription_dialog_layout);
@@ -166,6 +167,7 @@ public class PatientPrescriptionsArrayAdapter extends ArrayAdapter<Prescription>
 
                     prescriptions.remove(position);
                     adapter.notifyDataSetChanged();
+                    Login.PhysicianSelectedPatient.setPrescriptions(prescriptions);
 
                     Toast.makeText(context,
                             "Delete Script",

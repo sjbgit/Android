@@ -7,17 +7,22 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 
 import com.example.sbunke.activities.R;
+import com.example.sbunke.models.Login;
 import com.example.sbunke.views.GraphView;
 
 public class PatientCheckInGraph extends Activity {
 
-    float values[]={300,400,300};
+    float values[]={333,333,333};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_check_in_graph);
         setGraph();
+    }
+
+    private void setValues() {
+
     }
 
 

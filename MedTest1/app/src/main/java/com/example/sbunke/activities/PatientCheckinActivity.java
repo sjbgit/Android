@@ -391,8 +391,11 @@ public class PatientCheckInActivity extends Activity {
                             Toast.makeText(context,
                                     "Medication NOT Taken",
                                     Toast.LENGTH_SHORT).show();
+                                    */
                             lvMedications.setVisibility(View.INVISIBLE);
-                            */
+
+
+
                         }
                     }
                 });

@@ -119,7 +119,7 @@ public class PatientPrescriptionsListActivity extends Activity {
             public void onClick(View v) {
 
                 ServiceHelper.UpdatePatientPrescriptionsAsync(Login.PhysicianSelectedPatient.getId(), prescriptions);
-
+                Login.PhysicianSelectedPatient.setPrescriptions(prescriptions);
                 Toast.makeText(getBaseContext(),
                         "Prescription Changes Saved",
                         Toast.LENGTH_SHORT).show();
@@ -130,7 +130,15 @@ public class PatientPrescriptionsListActivity extends Activity {
 
 
     private void populateList() {
-        prescriptions = repository.GetAllPrescriptionsForPatient(ID);
+        if (Login.Patient != null) {
+            Login.Patient.setPrescriptions(repository.GetAllPrescriptionsForPatient(ID));
+            prescriptions.addAll(Login.Patient.getPrescriptions());
+        }
+        else if (Login.PhysicianSelectedPatient != null) {
+            prescriptions.addAll(Login.PhysicianSelectedPatient.getPrescriptions());
+        }
+
+        //prescriptions = repository.GetAllPrescriptionsForPatient(ID);
     }
 
     private void initializeList() {
