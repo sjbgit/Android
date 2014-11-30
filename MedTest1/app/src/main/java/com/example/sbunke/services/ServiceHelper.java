@@ -6,10 +6,12 @@ import com.example.sbunke.models.CheckIn;
 import com.example.sbunke.models.Patient;
 import com.example.sbunke.models.PatientCheckIn;
 import com.example.sbunke.models.Physician;
+import com.example.sbunke.models.Prescription;
 import com.example.sbunke.models.PrescriptionCheckIn;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import retrofit.RestAdapter;
 
@@ -20,6 +22,11 @@ public class ServiceHelper {
 
     private final static String ADDRESS = "http://192.168.0.5:8080";  //http://10.41.4.140:8080";
 
+    public static Patient UpdatePatientPrescriptionsSync(String patientId, List<Prescription> prescriptions) {
+        final PatientSvcApi restApi = new RestAdapter.Builder().setEndpoint(ADDRESS).build().create(PatientSvcApi.class);
+        return restApi.updatePatientPrescriptions(patientId, prescriptions);
+    }
+
     public static Credentials GetCredentialsSync(String username, String password) {
         final CredentialsSvcApi restApi = new RestAdapter.Builder().setEndpoint(ADDRESS).build().create(CredentialsSvcApi.class);
         return restApi.getCredentials(username,password);
@@ -28,6 +35,33 @@ public class ServiceHelper {
     public static Collection<Patient> GetPatientsByPhysicianIdSync(String physicianId) {
         final PatientSvcApi restApi = new RestAdapter.Builder().setEndpoint(ADDRESS).build().create(PatientSvcApi.class);
         return restApi.getPatientsByPhysicianId(physicianId);
+    }
+
+    public static void UpdatePatientPrescriptionsAsync(String patientId, List<Prescription> prescriptions) {
+        final String innerId = patientId;
+        final List<Prescription> innerPrescriptions = prescriptions;
+        final PatientSvcApi restApi = new RestAdapter.Builder().setEndpoint(ADDRESS).build().create(PatientSvcApi.class);
+
+        new AsyncTask<Void, Void, Patient>() {
+
+            @Override
+            protected Patient doInBackground(Void... voids) {
+                Patient patient = null;
+                try {
+
+                    patient = restApi.updatePatientPrescriptions(innerId, innerPrescriptions);
+                    String x = "test";
+
+                }
+                catch (Exception ex) {
+                    Exception e = ex;
+                }
+
+                return patient;
+
+            }
+        }.execute();
+
     }
 
     public static void GetPatientsByPhysicianId(String physicianId) {

@@ -23,8 +23,8 @@ public class CheckInReceiver extends BroadcastReceiver {
 
         Calendar now = Calendar.getInstance();
         DateFormat formatter = SimpleDateFormat.getTimeInstance();
-        Toast.makeText(context, "PHYSICIAN CHECK-IN RECEIVER " + formatter.format(now.getTime()),
-                Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "PHYSICIAN CHECK-IN RECEIVER " + formatter.format(now.getTime()),
+        //        Toast.LENGTH_SHORT).show();
 
         NotificationHelper.showPhysicianCheckInAlertNotification(context);
     }

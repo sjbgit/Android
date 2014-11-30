@@ -21,6 +21,7 @@ import com.example.sbunke.adapters.PatientPrescriptionsArrayAdapter;
 import com.example.sbunke.models.Login;
 import com.example.sbunke.models.Prescription;
 import com.example.sbunke.repositories.PatientRepository;
+import com.example.sbunke.services.ServiceHelper;
 import com.example.sbunke.viewmodels.PrescriptionCheckInViewModel;
 
 import java.util.ArrayList;
@@ -38,6 +39,8 @@ public class PatientPrescriptionsListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_prescriptions_list);
+
+        //TODO: GET PRESCRIPTIONS FROM PHYSICIAN PATIENT
 
         prescriptions = new ArrayList<Prescription>();
         repository = new PatientRepository();
@@ -114,6 +117,9 @@ public class PatientPrescriptionsListActivity extends Activity {
 
         ((Button)findViewById(R.id.btnSavePrescriptionChanges)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                ServiceHelper.UpdatePatientPrescriptionsAsync(Login.PhysicianSelectedPatient.getId(), prescriptions);
+
                 Toast.makeText(getBaseContext(),
                         "Prescription Changes Saved",
                         Toast.LENGTH_SHORT).show();

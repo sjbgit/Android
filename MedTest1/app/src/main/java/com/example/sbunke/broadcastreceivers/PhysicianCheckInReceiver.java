@@ -28,7 +28,7 @@ public class PhysicianCheckInReceiver extends BroadcastReceiver {
         PendingIntent mAlarmIntent = PendingIntent.getBroadcast(context, 0, launchIntent, 0);
         long oneDay = 24*3600*1000;
         //long nextMessage = 30000;
-        long nextMessage = 1000 * 60 * 5;
+        long nextMessage = 1000 * 60 * 2;
         Calendar now = Calendar.getInstance();
 
         //the other approach is to call something else entirely that will handle this
