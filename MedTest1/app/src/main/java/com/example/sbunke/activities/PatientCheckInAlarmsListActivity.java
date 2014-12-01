@@ -1,7 +1,10 @@
 package com.example.sbunke.activities;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,10 +20,12 @@ import android.widget.Toast;
 import com.example.sbunke.activities.R;
 import com.example.sbunke.adapters.PatientAlarmArrayAdapter;
 import com.example.sbunke.adapters.PatientAlarmTimePickerArrayAdapter;
+import com.example.sbunke.broadcastreceivers.AlarmReceiver;
 import com.example.sbunke.helpers.SharedPreferencesHelper;
 import com.example.sbunke.models.Patient;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +35,7 @@ public class PatientCheckInAlarmsListActivity extends Activity {
     private PatientAlarmTimePickerArrayAdapter adapter;
     SharedPreferencesHelper helper;
     private PatientCheckInAlarmsListActivity activity;
+    private Context ctx;
 
     //public static final String USER_ALARMS = "USER_ALARMS";
     private SharedPreferences sharedPreferences;
@@ -43,7 +49,7 @@ public class PatientCheckInAlarmsListActivity extends Activity {
         //sharedPreferences = getPreferences(Activity.MODE_PRIVATE);
         helper = new SharedPreferencesHelper(sharedPreferences);
         //helper.clearUserAlarms();
-
+        this.ctx = this.getBaseContext();
         this.activity = this;
 
         this.dates = getAlarmDatesFromPreferences();
@@ -55,7 +61,49 @@ public class PatientCheckInAlarmsListActivity extends Activity {
         initializeButtons();
     }
 
-    private void saveAlarms() {
+    private void createAlarms(List<Date> alarmTimes) {
+
+        for (Date date : alarmTimes) {
+            setRecurringNotifications(ctx, date);
+        }
+
+    }
+
+    private void setRecurringNotifications(Context context, Date date) {
+        AlarmManager manager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        Intent launchIntent = new Intent(context, AlarmReceiver.class);
+        PendingIntent mAlarmIntent = PendingIntent.getBroadcast(context, 0, launchIntent, 0);
+        long oneDay = 24*3600*1000;
+        //long nextMessage = 30000;
+        long nextMessage = 1000 * 60 * 5;
+        Calendar now = Calendar.getInstance();
+
+
+
+        if (date.before(now.getTime())) {
+            //now = now.
+            now.setTimeInMillis(now.getTimeInMillis() + oneDay);
+        }
+        else {
+            now.setTime(date);
+        }
+
+
+        //works
+        //now.setTime(date);
+
+
+
+
+
+        //the other approach is to call something else entirely that will handle this
+        //manager.set(AlarmManager.RTC_WAKEUP, nextMessage, mAlarmIntent);
+
+
+        manager.setRepeating(AlarmManager.RTC_WAKEUP,
+                now.getTimeInMillis(),
+                nextMessage,
+                mAlarmIntent);
 
     }
 
@@ -65,6 +113,7 @@ public class PatientCheckInAlarmsListActivity extends Activity {
               //create string and save in preferences
 
                 helper.saveAlarmTimes(activity.dates);
+                activity.createAlarms(activity.dates);
 
                 //TODO: CLEAR OUT AND SET ALARMS
                 Toast.makeText(activity,
