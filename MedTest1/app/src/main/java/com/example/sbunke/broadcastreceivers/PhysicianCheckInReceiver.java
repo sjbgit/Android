@@ -21,7 +21,7 @@ public class PhysicianCheckInReceiver extends BroadcastReceiver {
         //throw new UnsupportedOperationException("Not yet implemented");
 
         //TODO: UNCOMMENT THIS FOR PHYSICIAN ALARMS TO WORK
-        //SetRecurringPatientCheckInAlarm(context);
+        SetRecurringPatientCheckInAlarm(context);
     }
 
     private void SetRecurringPatientCheckInAlarm(Context context) {

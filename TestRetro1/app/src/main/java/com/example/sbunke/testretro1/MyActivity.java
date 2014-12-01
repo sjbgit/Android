@@ -133,6 +133,11 @@ public class MyActivity extends Activity {
         setContentView(R.layout.activity_my);
         context = this;
 
+        String text = "xx";
+        if (text.length() == 0) {
+
+        }
+
         /*
         ((Button)findViewById(R.id.btnNewButton)).setOnClickListener(new View.OnClickListener() {
                                                                      public void onClick(View v) {
